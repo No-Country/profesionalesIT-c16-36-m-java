@@ -1,0 +1,131 @@
+.image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+
+.profile {
+    padding: 3%;
+}
+
+h1 {
+    font-size: 1.5em;
+    padding-top: 2%;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+h3 {
+    background-color: black;
+    padding: 1.8%;
+    color: white;
+    font-size: 1em;
+    margin-bottom: 3%;
+    margin-top: 0;
+}
+
+h4 {
+    background-color: #aaaaaa;
+    padding: 1.8%;
+    color: white;
+    font-size: 0.9em;
+}
+
+h5 {
+    font-size: 0.9em;
+    margin-top: 2%;
+}
+
+h6{
+    font-size: 0.83em;
+}
+
+li{
+    font-size: 0.83em;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.description{
+    font-size: 0.83em; 
+    padding:0; 
+    margin: 0; 
+    margin-bottom: 5%; 
+    background-color:transparent;
+}
+
+.tag{
+    background-color: #dddddd;
+    padding: 2%;
+    border-radius: 10px;
+    margin-left: 2%;
+    font-size: 0.83em;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+.tagdescription{
+    padding-top: 2%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    
+}
+
+.button{
+    background-color: #cecece;
+    color: black;
+    padding: 0.5em;
+    border-radius: 10px;
+    font-size: 0.83em;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.button:hover{
+    background-color: #dddddd;
+    color: black;
+    padding: 0.5em;
+    border-radius: 10px;
+    font-size: 0.83em;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+a{
+    text-decoration:none;
+    margin-right: 2%;
+}
+
+p{
+    font-size: 0.83em;
+}
+
+.companyInfo{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.companyInfo p{
+    margin: 0%;
+    margin-right: 2%;
+}
+
+h3,
+h4 {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .col {
+        margin-top: 20px;
+    }
+}
