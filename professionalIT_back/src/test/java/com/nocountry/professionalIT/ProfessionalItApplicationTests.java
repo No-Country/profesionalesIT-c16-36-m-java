@@ -1,10 +1,10 @@
-package com.itprofessionals.backend;
+package com.nocountry.professionalIT;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class ProfessionalItApplicationTests {
 
 	@Test
 	void contextLoads() {
