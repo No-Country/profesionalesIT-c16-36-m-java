@@ -5,7 +5,7 @@ export const Profile = () => {
     //add components
     return (
         <>
-        <h1>Perfil del profesional</h1>
+        <h1 className=''>Perfil del profesional</h1>
         </>
     )
 }

@@ -1,4 +1,7 @@
 # Logs
+#a idea folder appears in the root of the repo
+../../.idea/
+
 logs
 *.log
 npm-debug.log*
