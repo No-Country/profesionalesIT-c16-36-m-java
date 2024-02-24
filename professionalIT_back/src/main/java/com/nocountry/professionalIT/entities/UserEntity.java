@@ -43,6 +43,11 @@ public class UserEntity implements UserDetails {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
+    /**
+     * The list of people with one user.
+     */
+    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "user")
+    private List<PersonEntity> people;
 
     @PrePersist
     public void prePersist() {
