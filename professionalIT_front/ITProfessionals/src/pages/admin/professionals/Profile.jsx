@@ -1,11 +1,11 @@
-import React, { useEffect, useState} from 'react'
+import React from 'react'
+import SideUserInfo from '@/components/professional-profile/SideUserInfo'
 
-
-export const Profile = () => {
-    //add components
+export default function Profile() {
     return (
         <>
-        <h1 className=''>Perfil del profesional</h1>
+        <h1>Name Lastname</h1>
+        <SideUserInfo />
         </>
     )
 }
