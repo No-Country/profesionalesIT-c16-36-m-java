@@ -5,20 +5,18 @@ import Landing from './pages/public/landing/Landing';
 import SignIn from './pages/public/sign-in/SignIn';
 import SignUp from './pages/public/sign-up/SignUp';
 import Search from './pages/public/search/Search';
-import { Profile } from './pages/admin/professionals/Profile';
-import { Navbar } from './components/layouts/Navbar';
-import Footer from './components/layouts/Footer';
+import Profile from './pages/admin/professionals/Profile';
 
 export default function Root() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Landing />} />
-        <Route path='ingresar' element={<SignIn />} />
-        <Route path='registrarse' element={<SignUp />} />
+        <Route path='login' element={<SignIn />} />
+        <Route path='logout' element={<SignUp />} />
         <Route path='dashboard' element={<Dashbaord />} />
         <Route path='search' element={<Search />} />
-        <Route path='admin/perfil' element={<Profile />} />
+        <Route path='profile/admin' element={<Profile />} />
       </Routes>
     </Router>
   );
