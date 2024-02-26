@@ -63,7 +63,7 @@ public class PersonEntity {
     /**
      * The user associated with this person.
      */
-    @OneToOne(targetEntity = UserEntity.class, cascade = CascadeType.PERSIST,
+    @OneToOne(targetEntity = UserEntity.class, cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "pers_userid")
     private UserEntity user;
