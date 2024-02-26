@@ -46,6 +46,7 @@ public class CountryEntity {
     /**
      * The list of provinces within this country.
      */
-    @OneToMany(targetEntity = ProvinceEntity.class, mappedBy = "country")
+    @OneToMany(targetEntity = ProvinceEntity.class, mappedBy = "country",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ProvinceEntity> provinces;
 }

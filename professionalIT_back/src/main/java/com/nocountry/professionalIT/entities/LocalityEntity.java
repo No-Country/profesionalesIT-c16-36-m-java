@@ -40,6 +40,6 @@ public class LocalityEntity {
      * The province to which this locality belongs.
      */
     @ManyToOne(targetEntity = ProvinceEntity.class)
-    @JoinColumn(name = "local_proviid")
+    @JoinColumn(name = "local_proviid", nullable = false)
     private ProvinceEntity province;
 }

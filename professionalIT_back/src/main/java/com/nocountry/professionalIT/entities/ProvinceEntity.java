@@ -48,6 +48,7 @@ public class ProvinceEntity {
     /**
      * The list of localities within this province.
      */
-    @OneToMany(targetEntity = LocalityEntity.class, mappedBy = "province")
+    @OneToMany(targetEntity = LocalityEntity.class, mappedBy = "province",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<LocalityEntity> localities;
 }
