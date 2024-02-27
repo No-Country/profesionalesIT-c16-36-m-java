@@ -6,6 +6,9 @@ import java.util.Date;
 
 /**
  * Entity class representing work experiences of a ProfessionalIT.
+ *  @author Claudia Ortiz
+ *  @version 1.0
+ *  @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -13,7 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "work_experiences")
-public class WorkExperience {
+public class WorkExperienceEntity {
 
     /**
      * Unique identifier for a work experience.
@@ -68,6 +71,9 @@ public class WorkExperience {
     @Column(name = "we_workexperience")
     private String workExperience;
 
+    /**
+     * Professional associated with the work experience.
+     */
     @ManyToOne
     @JoinColumn(name = "profe_id")
     private ProfessionalEntity professional;

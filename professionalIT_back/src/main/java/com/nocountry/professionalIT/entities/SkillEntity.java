@@ -6,7 +6,6 @@ import lombok.*;
 /**
  * Entity class representing a skill set.
  * @author Claudia Ortiz
- * @email: claudia.ortiz@uc.cl
  * @version 1.0
  * @since 2024-02-26
  */
@@ -39,12 +38,5 @@ public class SkillEntity {
     @ManyToOne
     @JoinColumn(name = "skill_hsid", referencedColumnName = "hs_id")
     private HardSkillEntity hardSkill;
-
-    /**
-     * Professional associated with the skill set.
-     */
-    @ManyToOne
-    @JoinColumn(name = "skill_profeid", referencedColumnName = "profe_id")
-    private ProfessionalEntity professional;
 
 }

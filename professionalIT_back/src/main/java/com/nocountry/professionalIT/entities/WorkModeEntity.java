@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 /**
  * Entity class representing a work mode.
+ *  @author Claudia Ortiz
+ *  @version 1.0
+ *  @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
