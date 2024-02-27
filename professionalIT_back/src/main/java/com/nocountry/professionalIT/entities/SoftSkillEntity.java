@@ -5,6 +5,10 @@ import lombok.*;
 
 /**
  * Entity class representing a soft skill.
+ * @author Claudia Ortiz
+ * @email: claudia.ortiz@uc.cl
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor

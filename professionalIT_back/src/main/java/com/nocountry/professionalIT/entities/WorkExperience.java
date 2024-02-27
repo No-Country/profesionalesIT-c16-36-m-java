@@ -6,6 +6,10 @@ import java.util.Date;
 
 /**
  * Entity class representing work experiences of a ProfessionalIT.
+ *  @author Claudia Ortiz
+ *  @email: claudia.ortiz@uc.cl
+ *  @version 1.0
+ *  @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
