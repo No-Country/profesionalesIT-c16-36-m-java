@@ -47,36 +47,35 @@ public class ProfessionalEntity {
     private String portfolio;
 
     /**
-     * The curriculum vitae (CV) of the professional.
-     */
-    @Column(name = "cv")
-    private String cv;
-
-    /**
      * The list of work modes of the professional.
      */
-    @OneToMany
-    @JoinColumn(name = "profe_WMId",referencedColumnName = "wm_id")
-    private List<WorkModeEntity> workModeId;
+    @OneToMany(mappedBy = "professional")
+    private List<WorkModeEntity> workModes;
 
     /**
      * The availabilities of the professional.
      */
-    @OneToOne
-    @JoinColumn(name = "profe_availId",referencedColumnName = "avail_id")
-    private List<availEntity> availabities;//falta crear esta entidad
+    @OneToMany(mappedBy = "professional")
+    private List<AvailabilityEntity> availabities;
+
+    private Boolean availInmediate;
+
+    private Boolean availTravel;
 
     /**
      * The list of skills of the professional.
      */
     @OneToMany
-    @JoinColumn(name = "profe_skillId",referencedColumnName = "skill_id")
     private List<SkillEntity> skillList;
 
     /**
      * The person associated with this professional.
      */
-    @OneToOne
+    @OneToOne(targetEntity = PersonEntity.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
     @JoinColumn(name = "profe_personId",referencedColumnName = "person_id")
     private PersonEntity person;
 
@@ -97,15 +96,13 @@ public class ProfessionalEntity {
     /**
      * The list of work experiences of the professional.
      */
-    @OneToMany
-    @JoinColumn(name = "profe_WEId",referencedColumnName = "we_id")
+    @OneToMany(mappedBy = "professional")
     private List<WorkExperience> workExperienceList;
 
     /**
      * The list of languages known by the professional.
      */
     @OneToMany
-    @JoinColumn(name = "profe_KLId",referencedColumnName = "kl_id")
     private List<KnowLanguageEntity> knowLanguageList;
 
     /**

@@ -20,7 +20,6 @@ public class LanguageEntity {
      */
     @Id
     @Column(name= "lang_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 

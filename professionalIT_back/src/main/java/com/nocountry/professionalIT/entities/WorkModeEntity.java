@@ -24,8 +24,11 @@ public class WorkModeEntity {
     /**
      * Parent work mode associated with this work mode.
      */
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "wm_modeid", referencedColumnName = "mode_id")
     private ModeEntity mode;
 
+    @ManyToOne
+    @JoinColumn(name = "profe_id")
+    private ProfessionalEntity professional;
 }
