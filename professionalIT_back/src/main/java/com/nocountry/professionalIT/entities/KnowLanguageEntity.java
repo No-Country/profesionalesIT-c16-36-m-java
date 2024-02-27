@@ -27,7 +27,7 @@ public class KnowLanguageEntity {
     /**
      * Known language associated with the language.
      */
-    //@ManyToOne Verificar relación
+    @ManyToOne
     @JoinColumn(name = "kl_langid", referencedColumnName = "lang_id")
     private LanguageEntity language;
 
@@ -37,7 +37,5 @@ public class KnowLanguageEntity {
     @Enumerated(EnumType.STRING)
     @Column(name="kl_level")
     private LanguageLevel level;
-
-
 
 }
