@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,5 +51,6 @@ public class ProvinceEntity {
      */
     @OneToMany(targetEntity = LocalityEntity.class, mappedBy = "province",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
     private List<LocalityEntity> localities;
 }

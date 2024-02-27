@@ -31,7 +31,7 @@ public class PersonEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "person_id")
+    @Column(name = "person_id",columnDefinition = "VARCHAR")
     private UUID id;
 
     /**

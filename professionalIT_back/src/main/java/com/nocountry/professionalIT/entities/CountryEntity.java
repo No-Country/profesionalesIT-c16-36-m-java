@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,11 +26,11 @@ import java.util.List;
 public class CountryEntity {
 
     /**
-     * The ISO code of the country.
+     * The unique identifier of the country
      */
     @Id
-    @Column(name = "coun_iso")
-    private String iso;
+    @Column(name = "coun_id",columnDefinition = "TINYINT")
+    private Integer id;
 
     /**
      * The name of the country.
@@ -48,5 +49,6 @@ public class CountryEntity {
      */
     @OneToMany(targetEntity = ProvinceEntity.class, mappedBy = "country",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
     private List<ProvinceEntity> provinces;
 }
