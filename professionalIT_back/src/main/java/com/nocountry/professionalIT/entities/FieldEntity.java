@@ -3,8 +3,12 @@ package com.nocountry.professionalIT.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 /**
  * Entity class representing a field in the IT industry.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor

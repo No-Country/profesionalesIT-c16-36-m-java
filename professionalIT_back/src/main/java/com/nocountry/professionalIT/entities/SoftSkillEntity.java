@@ -5,6 +5,9 @@ import lombok.*;
 
 /**
  * Entity class representing a soft skill.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -19,7 +22,7 @@ public class SoftSkillEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ss_id")
+    @Column(name = "ss_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**

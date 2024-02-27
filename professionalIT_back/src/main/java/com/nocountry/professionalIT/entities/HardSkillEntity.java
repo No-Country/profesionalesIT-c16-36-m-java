@@ -8,6 +8,9 @@ import lombok.Setter;
 
 /**
  * Entity class representing a hard skill.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -22,7 +25,7 @@ public class HardSkillEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hs_id")
+    @Column(name = "hs_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**

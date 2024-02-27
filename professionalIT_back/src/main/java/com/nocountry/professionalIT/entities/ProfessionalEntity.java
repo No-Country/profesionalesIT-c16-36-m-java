@@ -97,7 +97,7 @@ public class ProfessionalEntity {
      * The list of work experiences of the professional.
      */
     @OneToMany(mappedBy = "professional")
-    private List<WorkExperience> workExperienceList;
+    private List<WorkExperienceEntity> workExperienceList;
 
     /**
      * The list of languages known by the professional.

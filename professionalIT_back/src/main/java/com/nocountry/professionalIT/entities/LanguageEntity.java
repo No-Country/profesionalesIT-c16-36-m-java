@@ -5,6 +5,9 @@ import lombok.*;
 
 /**
  * Entity class representing a language.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -19,7 +22,7 @@ public class LanguageEntity {
      * Unique identifier for a language.
      */
     @Id
-    @Column(name= "lang_id")
+    @Column(name= "lang_id", columnDefinition = "TINYINT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
