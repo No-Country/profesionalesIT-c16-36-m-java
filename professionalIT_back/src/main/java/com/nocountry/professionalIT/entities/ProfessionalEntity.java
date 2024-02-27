@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -63,7 +64,7 @@ public class ProfessionalEntity {
      */
     @OneToOne
     @JoinColumn(name = "profe_availId",referencedColumnName = "avail_id")
-    private List<availEntity> availabities;
+    private List<availEntity> availabities;//falta crear esta entidad
 
     /**
      * The list of skills of the professional.
@@ -105,7 +106,7 @@ public class ProfessionalEntity {
      */
     @OneToMany
     @JoinColumn(name = "profe_KLId",referencedColumnName = "kl_id")
-    private List<KnowLaguageEntity> knowLanguageList;
+    private List<KnowLanguageEntity> knowLanguageList;
 
     /**
      * The date when the professional was last updated.
