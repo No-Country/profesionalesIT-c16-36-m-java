@@ -19,7 +19,7 @@ public class ModeEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mode_id")
+    @Column(name = "mode_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**

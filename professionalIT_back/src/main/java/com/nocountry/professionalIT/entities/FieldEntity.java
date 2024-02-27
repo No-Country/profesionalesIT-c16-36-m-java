@@ -18,8 +18,7 @@ public class FieldEntity {
      * Unique identifier for the field.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "field_id")
+    @Column(name = "field_id", columnDefinition = "SMALLINT", nullable = false, unique = true)
     private Integer id;
 
     /**

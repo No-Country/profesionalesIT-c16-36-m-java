@@ -19,7 +19,7 @@ public class SoftSkillEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ss_id")
+    @Column(name = "ss_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**

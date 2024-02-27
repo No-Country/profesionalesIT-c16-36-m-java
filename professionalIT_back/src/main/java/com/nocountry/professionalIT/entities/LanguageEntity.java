@@ -19,7 +19,7 @@ public class LanguageEntity {
      * Unique identifier for a language.
      */
     @Id
-    @Column(name= "lang_id")
+    @Column(name= "lang_id", columnDefinition = "TINYINT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

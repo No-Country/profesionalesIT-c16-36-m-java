@@ -17,14 +17,13 @@ public class WorkModeEntity {
      * Unique identifier for the work mode.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wm_id")
+    @Column(name = "wm_id", nullable = false, unique = true)
     private Integer id;
 
     /**
      * Parent work mode associated with this work mode.
      */
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "wm_modeid", referencedColumnName = "mode_id")
     private ModeEntity mode;
 

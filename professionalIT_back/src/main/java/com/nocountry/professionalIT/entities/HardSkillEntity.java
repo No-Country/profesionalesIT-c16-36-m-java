@@ -22,7 +22,7 @@ public class HardSkillEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hs_id")
+    @Column(name = "hs_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**
