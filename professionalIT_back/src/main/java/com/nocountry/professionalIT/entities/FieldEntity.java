@@ -3,6 +3,8 @@ package com.nocountry.professionalIT.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Entity class representing a field in the IT industry.
  * @author Claudia Ortiz
@@ -36,6 +38,6 @@ public class FieldEntity {
      */
     @OneToMany
     @JoinColumn(name = "field_profeid", referencedColumnName = "profe_id")
-    private ProfessionalEntity professional;
+    private List <ProfessionalEntity> professionals;
 
 }
