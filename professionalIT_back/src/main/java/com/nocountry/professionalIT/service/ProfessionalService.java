@@ -1,5 +1,7 @@
 package com.nocountry.professionalIT.service;
 
-public interface ProfessionalService {
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface ProfessionalService extends UserDetailsService {
 
 }

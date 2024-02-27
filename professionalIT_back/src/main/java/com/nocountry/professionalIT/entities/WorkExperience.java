@@ -67,4 +67,9 @@ public class WorkExperience {
      */
     @Column(name = "we_workexperience")
     private String workExperience;
+
+    @ManyToOne
+    @JoinColumn(name = "profe_id")
+    private ProfessionalEntity professional;
+
 }
