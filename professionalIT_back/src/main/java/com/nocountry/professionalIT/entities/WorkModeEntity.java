@@ -4,10 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 /**
  * Entity class representing a work mode.
- *  @author Claudia Ortiz
- *  @email: claudia.ortiz@uc.cl
- *  @version 1.0
- *  @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -21,7 +17,8 @@ public class WorkModeEntity {
      * Unique identifier for the work mode.
      */
     @Id
-    @Column(name = "wm_id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "wm_id")
     private Integer id;
 
     /**
@@ -31,11 +28,7 @@ public class WorkModeEntity {
     @JoinColumn(name = "wm_modeid", referencedColumnName = "mode_id")
     private ModeEntity mode;
 
-    /**
-     * Professional associated with the work mode.
-     */
     @ManyToOne
-    @JoinColumn(name = "wm_profeid", referencedColumnName = "profe_id")
+    @JoinColumn(name = "profe_id")
     private ProfessionalEntity professional;
-
 }

@@ -6,10 +6,6 @@ import java.util.Date;
 
 /**
  * Entity class representing work experiences of a ProfessionalIT.
- *  @author Claudia Ortiz
- *  @email: claudia.ortiz@uc.cl
- *  @version 1.0
- *  @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -17,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "work_experiences")
-public class WorkExperienceEntity {
+public class WorkExperience {
 
     /**
      * Unique identifier for a work experience.
@@ -72,10 +68,8 @@ public class WorkExperienceEntity {
     @Column(name = "we_workexperience")
     private String workExperience;
 
-    /**
-     * Professional associated with the work experience.
-     */
     @ManyToOne
-    @JoinColumn(name = "we_profeid", referencedColumnName = "profe_id")
+    @JoinColumn(name = "profe_id")
     private ProfessionalEntity professional;
+
 }

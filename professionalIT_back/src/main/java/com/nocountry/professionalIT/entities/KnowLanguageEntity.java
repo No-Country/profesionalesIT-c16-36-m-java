@@ -6,10 +6,6 @@ import lombok.*;
 
 /**
  * Entity class representing a known language with proficiency level.
- * @author Claudia Ortiz
- * @email: claudia.ortiz@uc.cl
- * @version 1.0
- * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
@@ -41,14 +37,5 @@ public class KnowLanguageEntity {
     @Enumerated(EnumType.STRING)
     @Column(name="kl_level")
     private LanguageLevel level;
-
-    /**
-     * Professional associated with the known languages.
-     */
-    @ManyToOne
-    @JoinColumn(name = "kl_profeid", referencedColumnName = "profe_id")
-    private ProfessionalEntity professional;
-
-
 
 }
