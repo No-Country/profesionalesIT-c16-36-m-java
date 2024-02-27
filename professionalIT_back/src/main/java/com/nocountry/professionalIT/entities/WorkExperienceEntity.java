@@ -17,7 +17,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "work_experiences")
-public class WorkExperience {
+public class WorkExperienceEntity {
 
     /**
      * Unique identifier for a work experience.
