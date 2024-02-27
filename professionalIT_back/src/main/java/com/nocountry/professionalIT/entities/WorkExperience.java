@@ -67,4 +67,11 @@ public class WorkExperience {
      */
     @Column(name = "we_workexperience")
     private String workExperience;
+
+    /**
+     * Professional associated with the work experience.
+     */
+    @ManyToOne
+    @JoinColumn(name = "we_profeid", referencedColumnName = "profe_id")
+    private ProfessionalEntity professional;
 }

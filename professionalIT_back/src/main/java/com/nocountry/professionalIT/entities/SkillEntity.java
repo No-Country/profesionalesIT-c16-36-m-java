@@ -36,4 +36,11 @@ public class SkillEntity {
     @JoinColumn(name = "skill_hsid", referencedColumnName = "hs_id")
     private HardSkillEntity hardSkill;
 
+    /**
+     * Professional associated with the skill set.
+     */
+    @ManyToOne
+    @JoinColumn(name = "skill_profeid", referencedColumnName = "profe_id")
+    private ProfessionalEntity professional;
+
 }

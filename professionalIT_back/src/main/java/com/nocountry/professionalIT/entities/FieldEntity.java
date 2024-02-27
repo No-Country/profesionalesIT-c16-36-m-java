@@ -27,4 +27,11 @@ public class FieldEntity {
     @Column(name = "field_name")
     private String name;
 
+    /**
+     * Professional associated with the field.
+     */
+    @OneToMany
+    @JoinColumn(name = "field_profeid", referencedColumnName = "profe_id")
+    private ProfessionalEntity professional;
+
 }

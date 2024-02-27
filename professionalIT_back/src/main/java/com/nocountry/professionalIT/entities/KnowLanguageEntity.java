@@ -38,6 +38,13 @@ public class KnowLanguageEntity {
     @Column(name="kl_level")
     private LanguageLevel level;
 
+    /**
+     * Professional associated with the known languages.
+     */
+    @ManyToOne
+    @JoinColumn(name = "kl_profeid", referencedColumnName = "profe_id")
+    private ProfessionalEntity professional;
+
 
 
 }
