@@ -15,5 +15,6 @@ import java.util.UUID;
 public class CustomerDTO {
 
     private UUID id;
-    private PersonEntity person;
+    private PersonDTO person;
+    private UserDTO user;
 }
