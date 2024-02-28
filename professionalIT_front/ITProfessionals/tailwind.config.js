@@ -16,12 +16,11 @@ export default withMT({
   ],
   theme: {
     colors: {
-      primary: '#CF253F',
-      secondary: '#2B2930',
-      background: '#1D1B20',
+      primary: '#222831',
+      secondary: '#00ADB5',
+      primary_clearer: '#393E46',
       darktext: '#36343B',
-      lightText: '#727272',
-      white: '#EEEEEE',
+      lightText: '#EEEEEE',
       gray: '#BFBFBF',
     },
     fontFamily,
