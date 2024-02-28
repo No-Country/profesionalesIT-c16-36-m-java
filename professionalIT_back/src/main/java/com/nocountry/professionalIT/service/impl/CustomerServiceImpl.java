@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .person(PersonEntity.builder()
                         .user(UserEntity.builder()
                                 .email(customerDTO.getPerson().getUser().getEmail())
-                                .role(Role.valueOf(customerDTO.getPerson().getGender().name()))
+                                .role(Role.CLIENT)
                                 .build())
                         .name(customerDTO.getPerson().getName())
                         .lastName(customerDTO.getPerson().getLastName())
