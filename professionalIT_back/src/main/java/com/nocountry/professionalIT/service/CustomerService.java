@@ -1,9 +1,10 @@
 package com.nocountry.professionalIT.service;
 
-import com.nocountry.professionalIT.dto.CustomerDTO;
+import com.nocountry.professionalIT.dto.PersonDTO;
+import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.CustomerEntity;
 
 public interface CustomerService {
 
-    CustomerEntity SaveCustomer(CustomerDTO customerDTO);
+    CustomerEntity saveNewCustomer(PersonDTO personDTO, UserDTO userDTO);
 }

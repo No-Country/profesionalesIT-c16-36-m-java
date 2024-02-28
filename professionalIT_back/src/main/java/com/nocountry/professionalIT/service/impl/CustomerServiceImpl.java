@@ -1,6 +1,7 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.CustomerDTO;
+import com.nocountry.professionalIT.dto.PersonDTO;
+import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.entities.CustomerEntity;
 import com.nocountry.professionalIT.entities.PersonEntity;
@@ -19,20 +20,25 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerEntity SaveCustomer(CustomerDTO customerDTO) {
-        CustomerEntity customer = CustomerEntity.builder()
-                .person(PersonEntity.builder()
-                        .user(UserEntity.builder()
-                                .email(customerDTO.getPerson().getUser().getEmail())
-                                .role(Role.CLIENT)
-                                .build())
-                        .name(customerDTO.getPerson().getName())
-                        .lastName(customerDTO.getPerson().getLastName())
-                        .gender(Gender.valueOf(customerDTO.getPerson().getGender().name()))
-                        .country(CountryEntity.builder()
-                                .id(customerDTO.getPerson().getCountry().getId())
-                                .build())
+    public CustomerEntity saveNewCustomer(PersonDTO personDTO, UserDTO userDTO) {
+
+        UserEntity user = UserEntity.builder()
+                .email(userDTO.getEmail())
+                .role(Role.CUSTOMER)
+                .build();
+
+        PersonEntity person = PersonEntity.builder()
+                .user(user)
+                .name(personDTO.getName())
+                .lastName(personDTO.getLastName())
+                .gender(Gender.valueOf(personDTO.getGender().name()))
+                .country(CountryEntity.builder()
+                        .id(personDTO.getCountry().getId())
                         .build())
+                .build();
+
+        CustomerEntity customer = CustomerEntity.builder()
+                .person(person)
                 .build();
         return customerRepository.save(customer);
     }
