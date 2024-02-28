@@ -1,4 +1,15 @@
 package com.nocountry.professionalIT.dto;
 
-public class UserDto {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserDTO {
+
+    private String email;
 }
