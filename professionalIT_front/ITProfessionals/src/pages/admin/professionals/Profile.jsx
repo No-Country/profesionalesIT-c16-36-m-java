@@ -1,4 +1,3 @@
-import React from 'react'
 import AboutMe from '@/components/professional-profile/AboutMe'
 
 export default function Profile() {

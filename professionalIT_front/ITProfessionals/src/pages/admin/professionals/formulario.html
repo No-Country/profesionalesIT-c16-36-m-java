@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <title>Formulario de Turnos</title>
+</head>
+
+<body>
+
+
+    <script>
+        // Función para verificar turnos disponibles al cargar la página
+        function verificarTurnosAlCargar() {
+            // Puedes hacer una petición al servidor (usando AJAX, por ejemplo) para ejecutar la función PHP
+            // y manejar la respuesta en JavaScript
+            // Aquí se utiliza un ejemplo simple de redirección en base a la respuesta
+
+            // Simulando una petición AJAX usando fetch
+            fetch('functionsReserva.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.turnosDisponibles) {
+                        // Si hay turnos disponibles, no haces nada o puedes realizar alguna acción adicional
+                        console.log("Hay turnos disponibles.");
+                        document.getElementById('mensajeLeyenda').innerHTML = '<p style="color: green;">Hay turnos disponibles para HOY</p>';
+                    } else {
+                        // Si no hay turnos disponibles, puedes mostrar un mensaje o realizar alguna acción
+                        console.log("No hay turnos disponibles.");
+                        document.getElementById('mensajeLeyenda').innerHTML = '<p style="color: red;">NO HAY turnos disponibles HOY</p>';
+                        // Puedes redirigir a otra página o realizar alguna acción adicional
+                        // window.location.href = 'otra_pagina.php';
+                    }
+                })
+                .catch(error => console.error('Error al verificar turnos:', error));
+        }
+
+        // Llamada a la función al cargar la página
+        verificarTurnosAlCargar();
+    </script>
+
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card my-5">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="card-title">Reservar Turno de Peluqueria</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <form id="formulario" action="functionsReserva.php" method="POST" novalidate>
+
+                            <div class="form-group text-center  mb-2">
+                                <h2 class="card-title">
+                                    <div id="mensajeLeyenda" class="mb-3"></div>
+                                </h2>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="fecha">Fecha*</label>
+                                <input type="date" id="fecha" name="fecha" class="form-control" required min="<?= date('m/d/Y') ?>">
+                                <div id="fechaError"></div>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="hora">Hora*</label>
+                                <input type="time" id="hora" name="hora" class="form-control" required>
+                                <div id="horaError"></div>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="id_especialidad">Trabajo a realizar*</label>
+                                <select class="form-control" id="id_especialidad" name="id_especialidad" required>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="1">Corte Hombre</option>
+                                    <option value="5">Corte Mujer</option>
+                                    <option value="6">Color Total</option>
+                                    <option value="8">Color Parcial</option>
+                                    <option value="7">Iluminacion</option>
+                                    <option value="9">Alisado</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="alergico">¿Eres alérgico?*</label>
+
+                                <div class="form-check">
+                                    <input class="alergico" type="radio" id="alergicoSi" name="alergico" value="1" required>
+                                    <label for="alergicoSi" class="form-check-label">Sí</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="alergico" type="radio" id="alergicoNo" name="alergico" value="0" required checked>
+                                    <label for="alergicoNo" class="form-check-label">No</label>
+                                </div>
+                                <div id="alergicoError"></div>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="observacion">Nombre*</label>
+                                <input type="text" class="form-control" id="observacion" name="observacion"
+                                    placeholder="Ingresa tu Nombre" >
+                                <div id="nombreError"></div>
+                            </div>
+
+                            <div class="form-group  mb-2">
+                                <label for="telefono">Número de teléfono*</label>
+                                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]+"
+                                    title="Ingresa solo números" inputmode="numeric"
+                                    placeholder="Ingresa un número de teléfono" required>
+                                    <div id="telefonoError"></div>
+                            </div>
+
+                            <input type="hidden" name="accion" value="insert_cita">
+
+                            <div class="text-center mt-3">
+                                <p>(*)campos obligatorios</p>
+
+                                <button type="submit" class="btn">Reservar Turno</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>
