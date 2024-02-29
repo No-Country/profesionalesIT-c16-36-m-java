@@ -5,10 +5,14 @@ import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Gender;
 import com.nocountry.professionalIT.enums.Role;
+import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.CustomerRepository;
 import com.nocountry.professionalIT.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -44,5 +48,15 @@ public class CustomerServiceImpl implements CustomerService {
                 .person(person)
                 .build();
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public CustomerEntity findById(UUID id) {
+        return customerRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Cliente no encontrado"));
+    }
+
+    @Override
+    public List<CustomerEntity> findAll() {
+        return customerRepository.findAll();
     }
 }
