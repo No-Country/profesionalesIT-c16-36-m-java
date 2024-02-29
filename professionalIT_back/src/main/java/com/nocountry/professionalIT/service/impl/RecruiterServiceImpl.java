@@ -5,10 +5,14 @@ import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Gender;
 import com.nocountry.professionalIT.enums.Role;
+import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.RecruiterRepository;
 import com.nocountry.professionalIT.service.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RecruiterServiceImpl implements RecruiterService {
@@ -44,5 +48,15 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .person(person)
                 .build();
         return recruiterRepository.save(recruiter);
+    }
+
+    @Override
+    public RecruiterEntity findById(UUID id) {
+        return recruiterRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Reclutador no encontrado"));
+    }
+
+    @Override
+    public List<RecruiterEntity> findAll() {
+        return recruiterRepository.findAll();
     }
 }
