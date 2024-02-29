@@ -25,4 +25,8 @@ public class RecruiterEntity {
             fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "recru_personid")
     private PersonEntity person;
+
+    @ManyToOne(targetEntity = EnterpriseEntity.class)
+    @JoinColumn(name = "recru_enterid")
+    private EnterpriseEntity enterprise;
 }
