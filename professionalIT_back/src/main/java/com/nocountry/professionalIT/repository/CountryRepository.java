@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @since 2024-02-24
  * */
 @Repository
-public interface CountryRepository extends JpaRepository<CountryEntity,String> {
+public interface CountryRepository extends JpaRepository<CountryEntity,Integer> {
 }
