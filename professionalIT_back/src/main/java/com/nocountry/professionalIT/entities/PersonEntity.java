@@ -74,4 +74,12 @@ public class PersonEntity {
     @ManyToOne(targetEntity = CountryEntity.class)
     @JoinColumn(name = "pers_counid")
     private CountryEntity country;
+
+    @ManyToOne(targetEntity = ProvinceEntity.class)
+    @JoinColumn(name = "pers_proviid")
+    private ProvinceEntity province;
+
+    @ManyToOne(targetEntity = LocalityEntity.class)
+    @JoinColumn(name = "pers_localid")
+    private LocalityEntity locality;
 }

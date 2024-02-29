@@ -41,7 +41,8 @@ public class CountryEntity {
     /**
      * The list of people associated with this country.
      */
-    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "country")
+    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "country",cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<PersonEntity> people;
 
     /**

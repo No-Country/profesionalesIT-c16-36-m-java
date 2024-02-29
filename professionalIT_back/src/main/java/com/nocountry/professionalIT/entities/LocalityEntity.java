@@ -1,10 +1,13 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * Represents a locality entity.
@@ -42,4 +45,11 @@ public class LocalityEntity {
     @ManyToOne(targetEntity = ProvinceEntity.class)
     @JoinColumn(name = "local_proviid", nullable = false)
     private ProvinceEntity province;
+
+    /**
+     * The list of people associated with this locality.
+     */
+    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "locality",cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<PersonEntity> people;
 }
