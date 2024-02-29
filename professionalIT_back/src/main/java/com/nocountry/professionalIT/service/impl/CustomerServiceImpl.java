@@ -2,10 +2,7 @@ package com.nocountry.professionalIT.service.impl;
 
 import com.nocountry.professionalIT.dto.PersonDTO;
 import com.nocountry.professionalIT.dto.UserDTO;
-import com.nocountry.professionalIT.entities.CountryEntity;
-import com.nocountry.professionalIT.entities.CustomerEntity;
-import com.nocountry.professionalIT.entities.PersonEntity;
-import com.nocountry.professionalIT.entities.UserEntity;
+import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Gender;
 import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.repository.CustomerRepository;
@@ -34,6 +31,12 @@ public class CustomerServiceImpl implements CustomerService {
                 .gender(Gender.valueOf(personDTO.getGender().name()))
                 .country(CountryEntity.builder()
                         .id(personDTO.getCountry().getId())
+                        .build())
+                .province(ProvinceEntity.builder()
+                        .id(personDTO.getProvince().getId())
+                        .build())
+                .locality(LocalityEntity.builder()
+                        .id(personDTO.getLocality().getId())
                         .build())
                 .build();
 
