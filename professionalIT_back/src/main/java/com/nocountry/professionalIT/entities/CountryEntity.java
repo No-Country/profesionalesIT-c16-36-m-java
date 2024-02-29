@@ -30,6 +30,7 @@ public class CountryEntity {
      */
     @Id
     @Column(name = "coun_id",columnDefinition = "TINYINT")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
@@ -49,7 +50,7 @@ public class CountryEntity {
      * The list of provinces within this country.
      */
     @OneToMany(targetEntity = ProvinceEntity.class, mappedBy = "country",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonIgnore
     private List<ProvinceEntity> provinces;
 }
