@@ -1,6 +1,8 @@
 package com.nocountry.professionalIT.dto;
 
 import com.nocountry.professionalIT.entities.CountryEntity;
+import com.nocountry.professionalIT.entities.LocalityEntity;
+import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.entities.UserEntity;
 import com.nocountry.professionalIT.enums.Gender;
 import lombok.AllArgsConstructor;
@@ -22,4 +24,6 @@ public class PersonDTO {
     private String img;
     private Gender gender;
     private CountryEntity country;
+    private ProvinceEntity province;
+    private LocalityEntity locality;
 }
