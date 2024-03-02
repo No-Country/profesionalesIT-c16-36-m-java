@@ -25,8 +25,6 @@ public class KnowLanguageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "kl_id")
     private Integer id;
-    //incompatible cambiar por byte(tinyInt)
-
     /**
      * Known language associated with the language.
      */
