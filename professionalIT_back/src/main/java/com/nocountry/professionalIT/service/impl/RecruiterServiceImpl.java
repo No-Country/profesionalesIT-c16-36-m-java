@@ -14,12 +14,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Implementation of the RecruiterService interface that provides
+ * methods to access recruiter information.
+ *
+ * @author Rodys Rodriguez
+ * @email: rodisenrique73@gmail.com
+ * @version 1.0
+ * @since 2024-02-28
+ * */
 @Service
 public class RecruiterServiceImpl implements RecruiterService {
 
     @Autowired
     private RecruiterRepository recruiterRepository;
 
+    /**
+     * Saves a new recruiter based on the provided person and user data.
+     *
+     * @param personDTO The DTO containing the person data for the new recruiter.
+     * @param userDTO The DTO containing the user data for the new recruiter.
+     * @return The newly created recruiter entity.
+     */
     @Override
     public RecruiterEntity saveNewRecruiter(PersonDTO personDTO, UserDTO userDTO) {
 
@@ -50,11 +66,23 @@ public class RecruiterServiceImpl implements RecruiterService {
         return recruiterRepository.save(recruiter);
     }
 
+    /**
+     * Finds a recruiter by its ID.
+     *
+     * @param id The ID of the recruiter to find.
+     * @return The recruiter entity with the specified ID.
+     * @throws ObjectNotFoundException If no recruiter is found with the given ID.
+     */
     @Override
     public RecruiterEntity findById(UUID id) {
         return recruiterRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Reclutador no encontrado"));
     }
 
+    /**
+     * Retrieves all recruiters.
+     *
+     * @return A list of all recruiters.
+     */
     @Override
     public List<RecruiterEntity> findAll() {
         return recruiterRepository.findAll();

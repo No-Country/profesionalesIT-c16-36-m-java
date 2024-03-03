@@ -10,22 +10,50 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of the ProvinceService interface that provides
+ * methods to access province information.
+ *
+ * @author Rodys Rodriguez
+ * @email: rodisenrique73@gmail.com
+ * @version 1.0
+ * @since 2024-02-24
+ * */
 @Service
 public class ProvinceServiceImpl implements ProvinceService {
 
     @Autowired
     private ProvinceRepository provinceRepository;
 
+    /**
+     * Finds a province by its ID.
+     *
+     * @param id The ID of the country to find.
+     * @return An Optional containing the country with the specified ID, or empty if not found.
+     */
     @Override
     public Optional<ProvinceEntity> findById(Integer id) {
         return provinceRepository.findById(id);
     }
 
+    /**
+     * Finds provinces by country ID.
+     *
+     * @param id The ID of the province.
+     * @return A list of localities associated with the given province ID.
+     */
     @Override
     public List<ProvinceEntity> findProvincesByCountryId(Integer id) {
         return provinceRepository.findProvincesByCountryId(id);
     }
 
+    /**
+     * Searches for provinces by name and country.
+     *
+     * @param search The search string to match against province names.
+     * @param country The country entity to filter provinces.
+     * @return A list of provinces matching the search string and country.
+     */
     @Override
     public List<ProvinceEntity> searchProvinces(String search, CountryEntity country) {
         return provinceRepository.searchProvinces(search,country);

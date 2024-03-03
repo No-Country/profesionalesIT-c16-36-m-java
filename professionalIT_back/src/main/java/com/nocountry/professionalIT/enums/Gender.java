@@ -2,6 +2,11 @@ package com.nocountry.professionalIT.enums;
 
 /**
  * Enumeration representing gender.
+ *
+ * @see #FEMENINO
+ * @see #MASCULINO
+ * @see #OTRO
+ *
  * @author Rodys Rodriguez
  * @email: rodisenrique73@gmail.com
  * @version 1.0
