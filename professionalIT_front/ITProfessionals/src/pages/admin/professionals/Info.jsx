@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export default function Info() {
     return (
         <>
-            <div className='py-8 min-h-screen bg-primary text-white'>
+            <div className='py-8 min-h-screen bg-[#222831] text-white'>
                 <Formik
                     initialValues={{
                         portfolio: '',
@@ -207,7 +207,7 @@ export default function Info() {
                                 <label htmlFor="availTravel" className="mb-1">Disponibilidad para viajar:</label>
                                 <Field className="text-black p-2 border rounded border-gray-300 mx-3 scale-150" type="checkbox" name="availTravel" />
                             </div>
-                            <button className="bg-secondary text-white text-sm p-2 rounded-md cursor-pointer w-32" type="submit">Guardar</button>
+                            <button className="bg-[#008A90] text-white text-sm p-2 rounded-md cursor-pointer w-32" type="submit">Guardar</button>
                         </Form>
                     )}
                 </Formik>
