@@ -1,6 +1,5 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.repository.ProvinceRepository;
 import com.nocountry.professionalIT.service.ProvinceService;
@@ -48,14 +47,14 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     /**
-     * Searches for provinces by name and country.
+     * Searches for provinces by name and country ID.
      *
      * @param search The search string to match against province names.
-     * @param country The country entity to filter provinces.
-     * @return A list of provinces matching the search string and country.
+     * @param countryId The ID of the country to filter provinces.
+     * @return A list of provinces matching the search string and country ID.
      */
     @Override
-    public List<ProvinceEntity> searchProvinces(String search, CountryEntity country) {
-        return provinceRepository.searchProvinces(search,country);
+    public List<ProvinceEntity> searchProvinces(String search, Integer countryId) {
+        return provinceRepository.searchProvinces(search,countryId);
     }
 }

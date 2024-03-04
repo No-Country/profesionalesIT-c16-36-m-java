@@ -61,23 +61,17 @@ public class CountryController {
     }
 
     @GetMapping("{id}/provinces")
-    public ResponseEntity<?> searchProvinces (@RequestParam(required = false) String search,
+    public ResponseEntity<List<ProvinceDTO>> searchProvinces (@RequestParam(required = false) String search,
                                               @PathVariable Integer id){
 
+        List<ProvinceEntity> provinceEntityList;
         if (search == null || search.isEmpty()){
-            List<ProvinceDTO> provinceDTOList = provinceService.findProvincesByCountryId(id)
-                    .stream()
-                    .map(provinceEntity -> ProvinceDTO.builder()
-                            .id(provinceEntity.getId())
-                            .name(provinceEntity.getName())
-                            .build())
-                    .toList();
-            return ResponseEntity.ok(provinceDTOList);
+            provinceEntityList = provinceService.findProvincesByCountryId(id);
+        }else {
+            provinceEntityList = provinceService.searchProvinces(search, id);
         }
 
-        Optional<CountryEntity> country = countryService.findById(id);
-
-        List<ProvinceDTO> provinceDTOList = provinceService.searchProvinces(search, country.get())
+        List<ProvinceDTO> provinceDTOList = provinceEntityList
                 .stream()
                 .map(provinceEntity -> ProvinceDTO.builder()
                         .id(provinceEntity.getId())

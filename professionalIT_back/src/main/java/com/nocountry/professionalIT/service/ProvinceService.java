@@ -1,6 +1,5 @@
 package com.nocountry.professionalIT.service;
 
-import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 
 import java.util.List;
@@ -33,11 +32,11 @@ public interface ProvinceService {
     List<ProvinceEntity> findProvincesByCountryId (Integer id);
 
     /**
-     * Searches for provinces by name and country.
+     * Searches for provinces by name and country ID.
      *
      * @param search The search string to match against province names.
-     * @param country The country entity to filter provinces.
-     * @return A list of provinces matching the search string and country.
+     * @param countryId The ID of the country to filter provinces.
+     * @return A list of provinces matching the search string and country ID.
      */
-    List<ProvinceEntity> searchProvinces (String search, CountryEntity country);
+    List<ProvinceEntity> searchProvinces (String search, Integer countryId);
 }
