@@ -36,14 +36,14 @@ public class LocalityServiceImpl implements LocalityService {
     }
 
     /**
-     * Searches for localities based on the provided search string and province.
+     * Searches for localities by name and province ID.
      *
      * @param search   The search string to match against locality names.
-     * @param province The province entity to filter localities.
-     * @return A list of localities matching the search string and province.
+     * @param provinceId The ID of the province to filter localities.
+     * @return A list of localities matching the search string and province ID.
      */
     @Override
-    public List<LocalityEntity> searchLocalities(String search, ProvinceEntity province) {
-        return localityRepository.searchLocalities(search,province);
+    public List<LocalityEntity> searchLocalities(String search, Integer provinceId) {
+        return localityRepository.searchLocalities(search,provinceId);
     }
 }
