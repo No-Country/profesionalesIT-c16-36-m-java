@@ -4,29 +4,28 @@ import com.nocountry.professionalIT.dto.CountryDTO;
 import com.nocountry.professionalIT.dto.LocalityDTO;
 import com.nocountry.professionalIT.dto.ProvinceDTO;
 import com.nocountry.professionalIT.entities.CountryEntity;
+import com.nocountry.professionalIT.entities.LocalityEntity;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.service.CountryService;
 import com.nocountry.professionalIT.service.LocalityService;
 import com.nocountry.professionalIT.service.ProvinceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/country")
 public class CountryController {
 
-    @Autowired
-    private CountryService countryService;
+    private final CountryService countryService;
 
-    @Autowired
-    private ProvinceService provinceService;
+    private final ProvinceService provinceService;
 
-    @Autowired
-    private LocalityService localityService;
+    private final LocalityService localityService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findCountryById (@PathVariable Integer id){
@@ -60,23 +59,17 @@ public class CountryController {
     }
 
     @GetMapping("{id}/provinces")
-    public ResponseEntity<?> searchProvinces (@RequestParam(required = false) String search,
+    public ResponseEntity<List<ProvinceDTO>> searchProvinces (@RequestParam(required = false) String search,
                                               @PathVariable Integer id){
 
+        List<ProvinceEntity> provinceEntityList;
         if (search == null || search.isEmpty()){
-            List<ProvinceDTO> provinceDTOList = provinceService.findProvincesByCountryId(id)
-                    .stream()
-                    .map(provinceEntity -> ProvinceDTO.builder()
-                            .id(provinceEntity.getId())
-                            .name(provinceEntity.getName())
-                            .build())
-                    .toList();
-            return ResponseEntity.ok(provinceDTOList);
+            provinceEntityList = provinceService.findProvincesByCountryId(id);
+        }else {
+            provinceEntityList = provinceService.searchProvinces(search, id);
         }
 
-        Optional<CountryEntity> country = countryService.findById(id);
-
-        List<ProvinceDTO> provinceDTOList = provinceService.searchProvinces(search, country.get())
+        List<ProvinceDTO> provinceDTOList = provinceEntityList
                 .stream()
                 .map(provinceEntity -> ProvinceDTO.builder()
                         .id(provinceEntity.getId())
@@ -87,24 +80,17 @@ public class CountryController {
     }
 
     @GetMapping("/province/{id}/localities")
-    public ResponseEntity<?> searchLocalities (@PathVariable Integer id,
+    public ResponseEntity<List<LocalityDTO>> searchLocalities (@PathVariable Integer id,
                                                @RequestParam(required = false) String search){
 
+        List<LocalityEntity> localityEntityList;
         if (search == null || search.isEmpty()){
-            List<LocalityDTO> localityDTOList = localityService.findLocalitiesByProvinceId(id)
-                    .stream()
-                    .map(localityEntity -> LocalityDTO.builder()
-                            .id(localityEntity.getId())
-                            .name(localityEntity.getName())
-                            .build())
-                    .toList();
-            return ResponseEntity.ok(localityDTOList);
+            localityEntityList = localityService.findLocalitiesByProvinceId(id);
+        }else{
+            localityEntityList = localityService.searchLocalities(search,id);
         }
 
-        Optional<ProvinceEntity> province = provinceService.findById(id);
-
-        List<LocalityDTO> localityDTOList = localityService.searchLocalities(search,province.get())
-                .stream()
+        List<LocalityDTO> localityDTOList = localityEntityList.stream()
                 .map(localityEntity -> LocalityDTO.builder()
                         .id(localityEntity.getId())
                         .name(localityEntity.getName())

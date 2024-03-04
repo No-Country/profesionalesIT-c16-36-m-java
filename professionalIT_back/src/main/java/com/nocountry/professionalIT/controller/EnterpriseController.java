@@ -3,18 +3,18 @@ package com.nocountry.professionalIT.controller;
 import com.nocountry.professionalIT.dto.EnterpriseDTO;
 import com.nocountry.professionalIT.entities.EnterpriseEntity;
 import com.nocountry.professionalIT.service.EnterpriseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("enterprise")
 public class EnterpriseController {
 
-    @Autowired
-    private EnterpriseService enterpriseService;
+    private final EnterpriseService enterpriseService;
 
     @GetMapping()
     public ResponseEntity<?> searchEnterprises(@RequestParam String search){

@@ -6,7 +6,6 @@ import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.EnterpriseRepository;
 import com.nocountry.professionalIT.service.EnterpriseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +23,7 @@ import java.util.List;
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-    @Autowired
-    private EnterpriseRepository enterpriseRepository;
+    private final EnterpriseRepository enterpriseRepository;
 
     /**
      * Saves a new enterprise based on the provided enterprise DTO.

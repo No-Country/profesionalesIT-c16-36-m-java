@@ -3,7 +3,7 @@ package com.nocountry.professionalIT.service.impl;
 import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.repository.CountryRepository;
 import com.nocountry.professionalIT.service.CountryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +18,11 @@ import java.util.Optional;
  * @version 1.0
  * @since 2024-02-24
  * */
+@RequiredArgsConstructor
 @Service
 public class CountryServiceImpl implements CountryService {
 
-    @Autowired
-    private CountryRepository countryRepository;
+    private final CountryRepository countryRepository;
 
     /**
      * Finds a country by its ID.

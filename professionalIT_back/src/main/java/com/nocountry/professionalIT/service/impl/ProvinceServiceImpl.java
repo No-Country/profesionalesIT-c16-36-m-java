@@ -1,10 +1,9 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.repository.ProvinceRepository;
 import com.nocountry.professionalIT.service.ProvinceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +18,11 @@ import java.util.Optional;
  * @version 1.0
  * @since 2024-02-24
  * */
+@RequiredArgsConstructor
 @Service
 public class ProvinceServiceImpl implements ProvinceService {
 
-    @Autowired
-    private ProvinceRepository provinceRepository;
+    private final ProvinceRepository provinceRepository;
 
     /**
      * Finds a province by its ID.
@@ -48,14 +47,14 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     /**
-     * Searches for provinces by name and country.
+     * Searches for provinces by name and country ID.
      *
      * @param search The search string to match against province names.
-     * @param country The country entity to filter provinces.
-     * @return A list of provinces matching the search string and country.
+     * @param countryId The ID of the country to filter provinces.
+     * @return A list of provinces matching the search string and country ID.
      */
     @Override
-    public List<ProvinceEntity> searchProvinces(String search, CountryEntity country) {
-        return provinceRepository.searchProvinces(search,country);
+    public List<ProvinceEntity> searchProvinces(String search, Integer countryId) {
+        return provinceRepository.searchProvinces(search,countryId);
     }
 }
