@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.mapper;
 
+import com.nocountry.professionalIT.dto.WorkExperienceDto;
 import com.nocountry.professionalIT.entities.WorkExperienceEntity;
 import org.mapstruct.*;
 

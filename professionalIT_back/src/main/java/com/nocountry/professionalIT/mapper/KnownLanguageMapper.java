@@ -14,7 +14,7 @@ import org.mapstruct.*;
  * @since 2024-03-01
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface KnowLanguageMapper {
+public interface KnownLanguageMapper {
 
     /**
      * Converts a KnownLanguageDto object to a KnowLanguageEntity object.

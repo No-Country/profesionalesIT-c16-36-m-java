@@ -31,6 +31,9 @@ public class WorkModeEntity {
     @JoinColumn(name = "wm_modeid", referencedColumnName = "mode_id")
     private ModeEntity mode;
 
+    /**
+     * Professional associated with this work mode.
+     */
     @ManyToOne
     @JoinColumn(name = "profe_id")
     private ProfessionalEntity professional;
