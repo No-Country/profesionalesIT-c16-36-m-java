@@ -1,34 +1,51 @@
-import { useContext } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom';
-import "../../assets/css/login.css"
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/wit1E1RoaYn
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button"
 
-
- 
-export const Login = () => {
-
+export default function Login() {
   return (
-      <div>
-        <br /><br /><br />   
-        <div className="formLogin">
-          <h4 className='titleFormRegister'>Login</h4>
-            <form className="php-email-form"> 
-              <div className="row">
-                <div className="col-md-12 form-group">
-                  <label>Email</label>
-                  <input type="email" className="form-control" placeholder="usuario@mail.com" name="email" ></input>
-                </div>
-              </div>
-              <div className="form-group mt-3">
-                <label>Contraseña</label>
-                <input type="password" className="form-control" placeholder="Escribe tu password" name="password"></input>
-              </div>
-              <div className="text-center"><button type="submit">Login</button></div>
-              <p>
-                ¿No tienes una cuenta? <a href="register" className='colorT'>Crear mi cuenta</a>
-              </p>
-            </form>
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardDescription>Enter your email below to login to your account.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" placeholder="m@example.com" required type="email" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="password">Password</Label>
+          <Input id="password" required type="password" />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Link className="text-sm underline" to="#">
+            Forgot your password?
+          </Link>
+          <div className="flex flex-col gap-2">
+            <Button className="w-full" type="submit">
+              Login
+            </Button>
+            <Button className="w-full" variant="outline">
+              Login with Google
+            </Button>
           </div>
-        
-      </div>
+          <p className="text-sm">
+            Don't have an account?
+            <Link className="text-blue-500 underline" to="../signup">
+              Register here
+            </Link>
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
+
