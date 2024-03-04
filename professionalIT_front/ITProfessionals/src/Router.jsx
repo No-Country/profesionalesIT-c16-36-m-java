@@ -7,12 +7,15 @@ import SignUp from './pages/public/sign-up/SignUp';
 import Search from './pages/public/search/Search';
 import Profile from './pages/admin/professionals/Profile';
 import Info from './pages/admin/professionals/Info';
+import RootLayout from './Layout';
+import Catalog from './pages/admin/professionals/Catalog';
+import ProfileContact from './pages/admin/professionals/ProfileContact';
 
 export default function Root() {
   return (
     <Router>
+      <RootLayout>
         <Routes>
-          
           <Route path='/' element={<Landing />} />
           <Route path='login' element={<SignIn />} />
           <Route path='logout' element={<SignUp />} />
@@ -20,8 +23,10 @@ export default function Root() {
           <Route path='search' element={<Search />} />
           <Route path='profile/admin' element={<Profile />} />
           <Route path='profile/info' element={<Info/>} />
-          
+          <Route path='professionals/catalog' element={<Catalog/>} />
+          <Route path='profile/contact' element={<ProfileContact/>} />
         </Routes>
+      </RootLayout>
     </Router>
   );
 }
