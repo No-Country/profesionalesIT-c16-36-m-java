@@ -9,25 +9,23 @@ import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.service.CountryService;
 import com.nocountry.professionalIT.service.LocalityService;
 import com.nocountry.professionalIT.service.ProvinceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/country")
 public class CountryController {
 
-    @Autowired
-    private CountryService countryService;
+    private final CountryService countryService;
 
-    @Autowired
-    private ProvinceService provinceService;
+    private final ProvinceService provinceService;
 
-    @Autowired
-    private LocalityService localityService;
+    private final LocalityService localityService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findCountryById (@PathVariable Integer id){

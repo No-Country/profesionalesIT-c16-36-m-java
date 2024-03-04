@@ -1,10 +1,9 @@
 package com.nocountry.professionalIT.service.impl;
 
 import com.nocountry.professionalIT.entities.LocalityEntity;
-import com.nocountry.professionalIT.entities.ProvinceEntity;
 import com.nocountry.professionalIT.repository.LocalityRepository;
 import com.nocountry.professionalIT.service.LocalityService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +17,11 @@ import java.util.List;
  * @version 1.0
  * @since 2024-02-24
  * */
+@RequiredArgsConstructor
 @Service
 public class LocalityServiceImpl implements LocalityService {
 
-    @Autowired
-    private LocalityRepository localityRepository;
+    private final LocalityRepository localityRepository;
 
     /**
      * Finds localities by province ID.

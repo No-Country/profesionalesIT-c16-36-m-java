@@ -8,7 +8,7 @@ import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.RecruiterRepository;
 import com.nocountry.professionalIT.service.RecruiterService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +23,11 @@ import java.util.UUID;
  * @version 1.0
  * @since 2024-02-28
  * */
+@RequiredArgsConstructor
 @Service
 public class RecruiterServiceImpl implements RecruiterService {
 
-    @Autowired
-    private RecruiterRepository recruiterRepository;
+    private final RecruiterRepository recruiterRepository;
 
     /**
      * Saves a new recruiter based on the provided person and user data.

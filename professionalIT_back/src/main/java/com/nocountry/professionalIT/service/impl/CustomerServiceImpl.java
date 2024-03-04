@@ -8,7 +8,7 @@ import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.CustomerRepository;
 import com.nocountry.professionalIT.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +23,11 @@ import java.util.UUID;
  * @version 1.0
  * @since 2024-02-28
  * */
+@RequiredArgsConstructor
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     /**
      * Saves a new customer based on the provided person and user data.

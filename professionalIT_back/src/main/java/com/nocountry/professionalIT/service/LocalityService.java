@@ -1,7 +1,6 @@
 package com.nocountry.professionalIT.service;
 
 import com.nocountry.professionalIT.entities.LocalityEntity;
-import com.nocountry.professionalIT.entities.ProvinceEntity;
 
 import java.util.List;
 
