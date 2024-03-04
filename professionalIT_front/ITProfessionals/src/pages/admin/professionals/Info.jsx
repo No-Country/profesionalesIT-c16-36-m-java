@@ -6,23 +6,28 @@ export default function Info() {
             <div className='py-8 min-h-screen bg-primary text-white'>
                 <Formik
                     initialValues={{
-                        nombre: '',
                         portfolio: '',
                         seniority: '',
                         fieldId: '',
                         knowLanguageList: [{ language: '', level: '' }],
-                        skillList: [''],
+                        softSkills: [''],
+                        hardSkills: [''],
                         availInmediate: false,
                         availTravel: false
                     }}
                     validationSchema={Yup.object({
-                        nombre: Yup.string().required('El nombre es requerido'),
-                        portfolio: Yup.string().url('El portafolio debe ser una URL válida').required("es requerido"),
+                        portfolio: Yup.string().url('El portafolio debe ser una URL válida'),
                         knowLanguageList: Yup.array().of(
                             Yup.object().shape({
                                 language: Yup.string().required('El idioma es requerido'),
                                 level: Yup.string().required('El nivel del idioma es requerido'),
                             })
+                        ),
+                        softSkills: Yup.array().of(
+                            Yup.string().required('La habilidad blanda es requerida')
+                        ),
+                        hardSkills: Yup.array().of(
+                            Yup.string().required('La habilidad dura es requerida')
                         ),
                     })}
                     validateOnChange={false}
@@ -37,14 +42,14 @@ export default function Info() {
                         <Form className="w-full max-w-md mx-auto flex flex-col items-center">
                             <h2 className="mb-4">Completa tus datos personales</h2>
                             <div className="flex flex-col mb-4 w-full">
-                                <label htmlFor="nombre" className="mb-1">Nombre:</label>
-                                <Field className="text-black p-2 border rounded border-gray-300 mb-1" type="text" name="nombre" />
-                                <ErrorMessage name="nombre" component="div" className="text-red-500" />
-                            </div>
-                            <div className="flex flex-col mb-4 w-full">
-                                <label htmlFor="portfolio" className="mb-1">Portafolio:</label>
+                                <label htmlFor="portfolio" className="mb-1">Portfolio:</label>
                                 <Field className="text-black p-2 border rounded border-gray-300 mb-1" type="text" name="portfolio" />
                                 <ErrorMessage name="portfolio" component="div" className="text-red-500" />
+                            </div>
+                            <div className="flex flex-col mb-4 w-full">
+                                <label htmlFor="fieldId" className="mb-1">Campo de especialización:</label>
+                                <Field className="text-black p-2 border rounded border-gray-300 mb-1" type="text" name="fieldId" />
+                                <ErrorMessage name="fieldId" component="div" className="text-red-500" />
                             </div>
                             <div className="flex flex-col mb-4 w-full">
                                 <label htmlFor="seniority" className="mb-1">Seniority:</label>
@@ -57,11 +62,6 @@ export default function Info() {
                                 <ErrorMessage name="seniority" component="div" className="text-red-500" />
                             </div>
                             <div className="flex flex-col mb-4 w-full">
-                                <label htmlFor="fieldId" className="mb-1">Campo de especialización:</label>
-                                <Field className="text-black p-2 border rounded border-gray-300 mb-1" type="text" name="fieldId" />
-                                <ErrorMessage name="fieldId" component="div" className="text-red-500" />
-                            </div>
-                            <div className="flex flex-col mb-4 w-full">
                                 <label htmlFor="knowLanguageList" className="mb-1">Idiomas:</label>
                                 <FieldArray name="knowLanguageList">
                                     {({ push, remove, form }) => (
@@ -70,7 +70,7 @@ export default function Info() {
                                                 form.values.knowLanguageList.map((language, index) => (
                                                     <div key={index} className={`flex justify-between items-center my-3 ${index !== form.values.knowLanguageList.length - 1 ? 'border-b-2 border-gray-300 pb-3 mb-3' : ''}`}>
                                                         {/* <div key={index} className="flex justify-between items-center my-3"> */}
-                                                        <div className="flex flex-col items-center">
+                                                        <div className="flex flex-col items-start">
                                                             <Field
                                                                 className="text-black p-2 border rounded border-gray-300 mb-1 mr-2 w-full"
                                                                 type="text"
@@ -126,19 +126,22 @@ export default function Info() {
                                 </FieldArray>
                             </div>
                             <div className="flex flex-col mb-4 w-full">
-                                <label htmlFor="skillList" className="mb-1">Habilidades:</label>
-                                <FieldArray name="skillList">
+                                <label htmlFor="softSkills" className="mb-1">Soft Skills:</label>
+                                <FieldArray name="softSkills">
                                     {({ push, remove, form }) => (
                                         <div>
-                                            {form.values.skillList && form.values.skillList.length > 0 ? (
-                                                form.values.skillList.map((skill, index) => (
-                                                    <div key={index} className={`flex justify-between items-center my-3 ${index !== form.values.skillList.length - 1 ? 'border-b-2 border-gray-300 pb-3 mb-3' : ''}`}>
-                                                        <Field
-                                                            className="text-black p-2 border rounded border-gray-300 mb-1 mr-2"
-                                                            type="text"
-                                                            placeholder="Hablidad"
-                                                            name={`skillList.${index}`}
-                                                        />
+                                            {form.values.softSkills && form.values.softSkills.length > 0 ? (
+                                                form.values.softSkills.map((skill, index) => (
+                                                    <div key={index} className={`flex justify-between items-center my-3 ${index !== form.values.softSkills.length - 1 ? 'border-b-2 border-gray-300 pb-3 mb-3' : ''}`}>
+                                                        <div className="flex flex-col items-start">
+                                                            <Field
+                                                                className="text-black p-2 border rounded border-gray-300 mb-1 mr-2"
+                                                                type="text"
+                                                                placeholder="Hablidad"
+                                                                name={`softSkills.${index}`}
+                                                            />
+                                                            <ErrorMessage name={`softSkills.${index}`} component="div" className="text-red-500" />
+                                                        </div>
                                                         <button
                                                             type="button"
                                                             onClick={() => remove(index)}
@@ -151,20 +154,58 @@ export default function Info() {
                                             ) : null}
                                             <button
                                                 type="button"
-                                                onClick={() => push('')}
+                                                onClick={() => push()}
                                                 className="bg-green-500 text-white text-sm p-2 rounded-md cursor-pointer"
                                             >
-                                                Agregar Habilidad
+                                                Agregar Soft Skill
                                             </button>
                                         </div>
                                     )}
                                 </FieldArray>
                             </div>
-                            <div className="flex flex-row mb-4 w-full">
+                            <div className="flex flex-col mb-4 w-full">
+                                <label htmlFor="hardSkills" className="mb-1">Hard Skills:</label>
+                                <FieldArray name="hardSkills">
+                                    {({ push, remove, form }) => (
+                                        <div>
+                                            {form.values.hardSkills && form.values.hardSkills.length > 0 ? (
+                                                form.values.hardSkills.map((skill, index) => (
+                                                    <div key={index} className={`flex justify-between items-center my-3 ${index !== form.values.hardSkills.length - 1 ? 'border-b-2 border-gray-300 pb-3 mb-3' : ''}`}>
+                                                        <div className="flex flex-col items-start">
+                                                            <Field
+                                                                className="text-black p-2 border rounded border-gray-300 mb-1 mr-2"
+                                                                type="text"
+                                                                placeholder="Hablidad"
+                                                                name={`hardSkills.${index}`}
+                                                            />
+                                                            <ErrorMessage name={`hardSkills.${index}`} component="div" className="text-red-500" />
+                                                        </div>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => remove(index)}
+                                                            className="bg-red-500 text-white text-sm p-2 rounded-md cursor-pointer"
+                                                        >
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                ))
+                                            ) : null}
+                                            <button
+                                                type="button"
+                                                onClick={() => push()}
+                                                className="bg-green-500 text-white text-sm p-2 rounded-md cursor-pointer"
+                                            >
+                                                Agregar Hard Skill
+                                            </button>
+                                        </div>
+                                    )}
+                                </FieldArray>
+                            </div>
+                            <div className="flex flex-row items-baseline mb-4 w-full">
                                 <label htmlFor="availInmediate" className="mb-1">Disponibilidad Inmediata:</label>
-                                <Field className="text-black p-2 border rounded border-gray-300 mx-3" type="checkbox" name="availInmediate" />
+                                <Field className="text-black p-2 border rounded border-gray-300 mx-3 scale-150" type="checkbox" name="availInmediate" />
                                 <label htmlFor="availTravel" className="mb-1">Disponibilidad para viajar:</label>
-                                <Field className="text-black p-2 border rounded border-gray-300 mx-3" type="checkbox" name="availTravel" />
+                                <Field className="text-black p-2 border rounded border-gray-300 mx-3 scale-150" type="checkbox" name="availTravel" />
                             </div>
                             <button className="bg-secondary text-white text-sm p-2 rounded-md cursor-pointer w-32" type="submit">Guardar</button>
                         </Form>
