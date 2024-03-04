@@ -9,7 +9,7 @@ import Profile from './pages/admin/professionals/Profile';
 import Info from './pages/admin/professionals/Info';
 import RootLayout from './Layout';
 import Catalog from './pages/admin/professionals/Catalog';
-import ProfileContact from './pages/admin/professionals/ProfileContact';
+import ProfileContact from './pages/admin/commons/ChatContact';
 
 export default function Root() {
   return (
