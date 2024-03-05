@@ -37,9 +37,4 @@ public class ProvinceDTO {
      * The country to which this province belongs.
      */
     private CountryEntity country;
-
-    /**
-     * The list of localities within this province.
-     */
-    private List<LocalityEntity> localityList;
 }
