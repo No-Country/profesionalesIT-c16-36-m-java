@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.service;
 
+import com.nocountry.professionalIT.dto.LocalityDTO;
 import com.nocountry.professionalIT.entities.LocalityEntity;
 
 import java.util.List;
@@ -29,5 +30,5 @@ public interface LocalityService {
      * @param provinceId The ID of the province to filter localities.
      * @return A list of localities matching the search string and province ID.
      */
-    List<LocalityEntity> searchLocalities (String search, Integer provinceId);
+    List<LocalityDTO> searchLocalities (String search, Integer provinceId);
 }
