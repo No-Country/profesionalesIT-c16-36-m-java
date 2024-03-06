@@ -43,7 +43,6 @@ public class UserEntity implements UserDetails {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
-
     @PrePersist
     public void prePersist() {
         createdDate = LocalDateTime.now();
