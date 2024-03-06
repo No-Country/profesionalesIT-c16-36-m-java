@@ -1,7 +1,6 @@
 package com.nocountry.professionalIT.service;
 
 import com.nocountry.professionalIT.dto.EnterpriseDTO;
-import com.nocountry.professionalIT.entities.EnterpriseEntity;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public interface EnterpriseService {
      * @param enterpriseDTO The DTO containing the data for the new enterprise.
      * @return The newly created enterprise entity.
      */
-    EnterpriseEntity saveEnterprise(EnterpriseDTO enterpriseDTO);
+    EnterpriseDTO saveEnterprise(EnterpriseDTO enterpriseDTO);
 
     /**
      * Updates an existing enterprise with the specified ID based on the provided enterprise DTO.
@@ -30,7 +29,7 @@ public interface EnterpriseService {
      * @param enterpriseDTO The DTO containing the updated data for the enterprise.
      * @return The updated enterprise entity.
      */
-    EnterpriseEntity updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO);
+    EnterpriseDTO updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO);
 
     /**
      * Finds an enterprise by its ID.
@@ -38,7 +37,7 @@ public interface EnterpriseService {
      * @param id The ID of the enterprise to find.
      * @return The enterprise entity with the specified ID, or null if not found.
      */
-    EnterpriseEntity findById (Integer id);
+    EnterpriseDTO findById (Integer id);
 
     /**
      * Finds enterprises whose name contains the specified search string, ignoring case.
@@ -46,6 +45,6 @@ public interface EnterpriseService {
      * @param search The search string to match against enterprise names.
      * @return A list of enterprises containing the search string in their names, ignoring case.
      */
-    List<EnterpriseEntity> findByNameContainingIgnoreCase (String search);
+    List<EnterpriseDTO> findByNameContainingIgnoreCase (String search);
 
 }

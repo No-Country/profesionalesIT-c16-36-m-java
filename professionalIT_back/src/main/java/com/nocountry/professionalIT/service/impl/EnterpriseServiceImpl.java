@@ -2,9 +2,10 @@ package com.nocountry.professionalIT.service.impl;
 
 import com.nocountry.professionalIT.dto.EnterpriseDTO;
 import com.nocountry.professionalIT.entities.EnterpriseEntity;
-import com.nocountry.professionalIT.exception.ObjectNotFoundException;
+import com.nocountry.professionalIT.mapper.EnterpriseMapper;
 import com.nocountry.professionalIT.repository.EnterpriseRepository;
 import com.nocountry.professionalIT.service.EnterpriseService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     private final EnterpriseRepository enterpriseRepository;
 
+    private final EnterpriseMapper enterpriseMapper;
+
     /**
      * Saves a new enterprise based on the provided enterprise DTO.
      *
@@ -32,13 +35,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
      * @return The newly created enterprise entity.
      */
     @Override
-    public EnterpriseEntity saveEnterprise(EnterpriseDTO enterpriseDTO) {
-        EnterpriseEntity enterprise = EnterpriseEntity.builder()
-                .name(enterpriseDTO.getName())
-                .description(enterpriseDTO.getDescription())
-                .logo(enterpriseDTO.getLogo())
-                .build();
-        return enterpriseRepository.save(enterprise);
+    public EnterpriseDTO saveEnterprise(EnterpriseDTO enterpriseDTO) {
+        EnterpriseEntity enterprise = enterpriseRepository
+                .save(enterpriseMapper.toEntity(enterpriseDTO));
+        return enterpriseMapper.toDto(enterprise);
     }
 
     /**
@@ -47,17 +47,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
      * @param id The ID of the enterprise to update.
      * @param enterpriseDTO The DTO containing the updated data for the enterprise.
      * @return The updated enterprise entity.
-     * @throws ObjectNotFoundException If no customer is found with the given ID.
+     * @throws EntityNotFoundException If no customer is found with the given ID.
      */
     @Override
-    public EnterpriseEntity updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO) {
+    public EnterpriseDTO updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO) {
         EnterpriseEntity enterpriseDB = enterpriseRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Empresa no encontrada"));
+                .orElseThrow(() -> new EntityNotFoundException("Empresa no encontrada"));
 
         enterpriseDB.setName(enterpriseDTO.getName());
         enterpriseDB.setDescription(enterpriseDTO.getDescription());
-
-        return enterpriseRepository.save(enterpriseDB);
+        enterpriseRepository.save(enterpriseDB);
+        return enterpriseMapper.toDto(enterpriseDB);
     }
 
     /**
@@ -65,12 +65,13 @@ public class EnterpriseServiceImpl implements EnterpriseService {
      *
      * @param id The ID of the enterprise to find.
      * @return The enterprise entity with the specified ID, or null if not found.
-     * @throws ObjectNotFoundException If no enterprise is found with the given ID.
+     * @throws EntityNotFoundException If no enterprise is found with the given ID.
      */
     @Override
-    public EnterpriseEntity findById(Integer id) {
-        return enterpriseRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Empresa no encontrada"));
+    public EnterpriseDTO findById(Integer id) {
+        EnterpriseEntity enterprise = enterpriseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Empresa no encontrada"));
+        return enterpriseMapper.toDto(enterprise);
     }
 
     /**
@@ -80,9 +81,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
      * @return A list of enterprises containing the search string in their names, ignoring case.
      */
     @Override
-    public List<EnterpriseEntity> findByNameContainingIgnoreCase(String search) {
-        return enterpriseRepository.findByNameContainingIgnoreCase(search);
+    public List<EnterpriseDTO> findByNameContainingIgnoreCase(String search) {
+        List<EnterpriseEntity> enterpriseList = enterpriseRepository
+                .findByNameContainingIgnoreCase(search);
+        return enterpriseMapper.toDtoList(enterpriseList);
     }
-
-
 }
