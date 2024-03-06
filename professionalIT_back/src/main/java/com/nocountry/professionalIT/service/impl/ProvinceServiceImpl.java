@@ -1,6 +1,8 @@
 package com.nocountry.professionalIT.service.impl;
 
+import com.nocountry.professionalIT.dto.ProvinceDTO;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
+import com.nocountry.professionalIT.mapper.ProvinceMapper;
 import com.nocountry.professionalIT.repository.ProvinceRepository;
 import com.nocountry.professionalIT.service.ProvinceService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ import java.util.Optional;
 public class ProvinceServiceImpl implements ProvinceService {
 
     private final ProvinceRepository provinceRepository;
+
+    private final ProvinceMapper provinceMapper;
 
     /**
      * Finds a province by its ID.
@@ -54,7 +58,13 @@ public class ProvinceServiceImpl implements ProvinceService {
      * @return A list of provinces matching the search string and country ID.
      */
     @Override
-    public List<ProvinceEntity> searchProvinces(String search, Integer countryId) {
-        return provinceRepository.searchProvinces(search,countryId);
+    public List<ProvinceDTO> searchProvinces(String search, Integer countryId) {
+        List<ProvinceEntity> provinces;
+        if (search == null || search.isEmpty()){
+            provinces = provinceRepository.findProvincesByCountryId(countryId);
+        }else {
+            provinces = provinceRepository.searchProvinces(search,countryId);
+        }
+        return provinceMapper.toDtoList(provinces);
     }
 }

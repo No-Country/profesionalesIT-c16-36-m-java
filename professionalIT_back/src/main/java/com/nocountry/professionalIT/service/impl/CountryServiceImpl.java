@@ -1,13 +1,15 @@
 package com.nocountry.professionalIT.service.impl;
 
+import com.nocountry.professionalIT.dto.CountryDTO;
 import com.nocountry.professionalIT.entities.CountryEntity;
+import com.nocountry.professionalIT.mapper.CountryMapper;
 import com.nocountry.professionalIT.repository.CountryRepository;
 import com.nocountry.professionalIT.service.CountryService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Implementation of the CountryService interface that provides
@@ -24,6 +26,8 @@ public class CountryServiceImpl implements CountryService {
 
     private final CountryRepository countryRepository;
 
+    private final CountryMapper countryMapper;
+
     /**
      * Finds a country by its ID.
      *
@@ -31,8 +35,10 @@ public class CountryServiceImpl implements CountryService {
      * @return An Optional containing the country with the specified ID, or empty if not found.
      */
     @Override
-    public Optional<CountryEntity> findById(Integer id) {
-        return countryRepository.findById(id);
+    public CountryDTO findById(Integer id) {
+        CountryEntity country = countryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pais no encontrado"));
+        return countryMapper.toDto(country);
     }
 
     /**
@@ -41,7 +47,9 @@ public class CountryServiceImpl implements CountryService {
      * @return A list of all countries.
      */
     @Override
-    public List<CountryEntity> findAll() {
-        return countryRepository.findAll();
+    public List<CountryDTO> findAll() {
+        List<CountryEntity> countries = countryRepository.findAll();
+        countries.forEach(country -> country.setProvinces(null));
+        return countryMapper.toDtoList(countries);
     }
 }
