@@ -38,13 +38,6 @@ public interface ProfessionalRepository extends JpaRepository<ProfessionalEntity
     List<ProfessionalEntity> findBySkillName(String skillName);
 
     /**
-     * Retrieves professionals by known language.
-     * @param language The language known by professionals.
-     * @return A list of professionals who know the specified language.
-     */
-    List<ProfessionalEntity> findByKnowLanguage(String language);
-
-    /**
      * Retrieves professionals by their seniority level.
      * @param seniority The seniority level of the professionals.
      * @return A list of professionals with the specified seniority level.

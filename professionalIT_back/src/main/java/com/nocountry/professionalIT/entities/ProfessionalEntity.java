@@ -58,8 +58,10 @@ public class ProfessionalEntity {
     @OneToMany(mappedBy = "professional")
     private List<AvailabilityEntity> availabities;
 
+    @Column(name = "profe_availinmediate")
     private Boolean availInmediate;
 
+    @Column(name = "profe_availtravel")
     private Boolean availTravel;
 
     /**
@@ -76,21 +78,21 @@ public class ProfessionalEntity {
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
-    @JoinColumn(name = "profe_personId",referencedColumnName = "person_id")
+    @JoinColumn(name = "profe_personid",referencedColumnName = "person_id")
     private PersonEntity person;
 
     /**
      * The field of specialization of the professional.
      */
     @ManyToOne
-    @JoinColumn (name = "profe_fieldId",referencedColumnName = "field_id")
+    @JoinColumn (name = "profe_fieldid",referencedColumnName = "field_id")
     private  FieldEntity fieldId;
 
     /**
      * The seniority level of the professional.
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "profe_seniId")
+    @Column(name = "profe_seniid")
     private Seniority seniority;
 
     /**
@@ -102,19 +104,19 @@ public class ProfessionalEntity {
     /**
      * The list of languages known by the professional.
      */
-    @OneToMany
-    private List<KnowLanguageEntity> knowLanguageList;
+    @OneToMany(mappedBy = "professional")
+    private List<KnowLanguageEntity> knowLanguage;
 
     /**
      * The date when the professional was last updated.
      */
-    @Column(name = "profe_dateUpdated")
+    @Column(name = "profe_dateupdated")
     private LocalDateTime updatedDate;
 
     /**
      * The date when the professional was created.
      */
-    @Column(name = "createdDate")
+    @Column(name = "profe_createdate")
     private LocalDateTime createdDate;
 
 }
