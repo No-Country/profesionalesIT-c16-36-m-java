@@ -5,7 +5,12 @@ import com.nocountry.professionalIT.entities.CountryEntity;
 import org.mapstruct.*;
 
 import java.util.List;
-
+/**
+ * @author Rodys Rodriguez
+ * @email: rodisenrique73@gmail.com
+ * @version 1.0
+ * @since 2024-03-5
+ * */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CountryMapper {
 
