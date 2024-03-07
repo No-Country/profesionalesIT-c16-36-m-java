@@ -37,7 +37,8 @@ public class FilterController {
             if(filteredProfessionals != null && !filteredProfessionals.isEmpty()) {
                 return ResponseEntity.ok(filteredProfessionals);
             }
-                return ResponseEntity.notFound().build();
+
+            return ResponseEntity.notFound().build();
 
         }
 
