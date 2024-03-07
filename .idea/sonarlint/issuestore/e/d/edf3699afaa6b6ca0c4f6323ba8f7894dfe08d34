@@ -1,0 +1,11 @@
+
+d
+java:S1192<"GDefine a constant instead of duplicating this literal "person" 3 times.(»“8 Îç¶á1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(å®©8¢Îç¶á1
+Y	java:S107"=Method has 10 parameters, which is greater than 7 authorized.(ÑÚÓ€8§Îç¶á1
+W
+java:S1118":Add a private constructor to hide the implicit public one.(¯²ì8¨Îç¶á1
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ÑÚÓ€8¨Îç¶á1
+Z
+java:S1128	"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8©Íş·á1

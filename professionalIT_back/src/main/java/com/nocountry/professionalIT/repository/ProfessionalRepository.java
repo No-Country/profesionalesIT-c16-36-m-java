@@ -1,12 +1,11 @@
 package com.nocountry.professionalIT.repository;
 
-import com.nocountry.professionalIT.entities.FieldEntity;
-import com.nocountry.professionalIT.entities.ProfessionalEntity;
+import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Seniority;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ import java.util.UUID;
  * @since 2024-02-28
  */
 @Repository
-public interface ProfessionalRepository extends JpaRepository<ProfessionalEntity, UUID> {
+public interface ProfessionalRepository extends JpaRepository<ProfessionalEntity, UUID> , JpaSpecificationExecutor<ProfessionalEntity> {
 
     /**
      * Retrieves a professional by their unique identifier.
@@ -50,6 +49,7 @@ public interface ProfessionalRepository extends JpaRepository<ProfessionalEntity
      * @return A list of professionals associated with the specified field entity.
      */
     List<ProfessionalEntity> findByFieldId(FieldEntity fieldEntity);
+
 
 }
 
