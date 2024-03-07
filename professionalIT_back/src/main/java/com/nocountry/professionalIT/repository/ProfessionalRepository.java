@@ -20,35 +20,35 @@ import java.util.UUID;
 @Repository
 public interface ProfessionalRepository extends JpaRepository<ProfessionalEntity, UUID> , JpaSpecificationExecutor<ProfessionalEntity> {
 
-    /**
-     * Retrieves a professional by their unique identifier.
-     * @param id The unique identifier of the professional.
-     * @return The professional entity if found, null otherwise.
-     */
-    @Query("SELECT p FROM ProfessionalEntity p WHERE p.id = :id")
-    ProfessionalEntity findProfessionalById(UUID id);
-
-    /**
-     * Retrieves professionals by skill name.
-     * @param skillName The name of the skill to search for.
-     * @return A list of professionals who possess the specified skill.
-     */
-    @Query("SELECT DISTINCT p FROM ProfessionalEntity p JOIN p.skillList s WHERE s.softSkill.name = ?1 OR s.hardSkill.name = ?1")
-    List<ProfessionalEntity> findBySkillName(String skillName);
-
-    /**
-     * Retrieves professionals by their seniority level.
-     * @param seniority The seniority level of the professionals.
-     * @return A list of professionals with the specified seniority level.
-     */
-    List<ProfessionalEntity> findBySeniority(Seniority seniority);
-
-    /**
-     * Retrieves professionals by field entity.
-     * @param fieldEntity The field entity to search for.
-     * @return A list of professionals associated with the specified field entity.
-     */
-    List<ProfessionalEntity> findByFieldId(FieldEntity fieldEntity);
+//    /**
+//     * Retrieves a professional by their unique identifier.
+//     * @param id The unique identifier of the professional.
+//     * @return The professional entity if found, null otherwise.
+//     */
+//    @Query("SELECT p FROM ProfessionalEntity p WHERE p.id = :id")
+//    ProfessionalEntity findProfessionalById(UUID id);
+//
+//    /**
+//     * Retrieves professionals by skill name.
+//     * @param skillName The name of the skill to search for.
+//     * @return A list of professionals who possess the specified skill.
+//     */
+//    @Query("SELECT DISTINCT p FROM ProfessionalEntity p JOIN p.skillList s WHERE s.softSkill.name = ?1 OR s.hardSkill.name = ?1")
+//    List<ProfessionalEntity> findBySkillName(String skillName);
+//
+//    /**
+//     * Retrieves professionals by their seniority level.
+//     * @param seniority The seniority level of the professionals.
+//     * @return A list of professionals with the specified seniority level.
+//     */
+//    List<ProfessionalEntity> findBySeniority(Seniority seniority);
+//
+//    /**
+//     * Retrieves professionals by field entity.
+//     * @param fieldEntity The field entity to search for.
+//     * @return A list of professionals associated with the specified field entity.
+//     */
+//    List<ProfessionalEntity> findByFieldId(FieldEntity fieldEntity);
 
 
 }

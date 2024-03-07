@@ -3,6 +3,8 @@ package com.nocountry.professionalIT.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Entity class representing a language.
  * @author Claudia Ortiz
@@ -26,10 +28,12 @@ public class LanguageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     /**
      * Name of the language.
      */
     @Column(name = "lang_name")
     private String name;
+
+    @OneToMany(mappedBy = "language", cascade = CascadeType.PERSIST)
+    private List<KnowLanguageEntity> knowLanguages;
 }

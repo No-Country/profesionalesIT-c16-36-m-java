@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.professionalIT.enums.Seniority;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -55,8 +56,9 @@ public class ProfessionalEntity {
     /**
      * The availabilities of the professional.
      */
-    @OneToMany(mappedBy = "professional")
-    private List<AvailabilityEntity> availabities;
+    @ManyToOne
+    @JoinColumn(name = "profe_availid")
+    private AvailabilityEntity availabilities;
 
     @Column(name = "profe_availinmediate")
     private Boolean availInmediate;
@@ -67,8 +69,13 @@ public class ProfessionalEntity {
     /**
      * The list of skills of the professional.
      */
-    @OneToMany
-    private List<SkillEntity> skillList;
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<SoftSkillsEntity> softSkills;
+
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<HardSkillsEntity> hardSkills;
 
     /**
      * The person associated with this professional.
@@ -78,15 +85,15 @@ public class ProfessionalEntity {
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
-    @JoinColumn(name = "profe_personid",referencedColumnName = "person_id")
+    @JoinColumn(name = "profe_personid")
     private PersonEntity person;
 
     /**
      * The field of specialization of the professional.
      */
     @ManyToOne
-    @JoinColumn (name = "profe_fieldid",referencedColumnName = "field_id")
-    private  FieldEntity fieldId;
+    @JoinColumn (name = "profe_fieldid")
+    private  FieldEntity field;
 
     /**
      * The seniority level of the professional.
@@ -98,13 +105,13 @@ public class ProfessionalEntity {
     /**
      * The list of work experiences of the professional.
      */
-    @OneToMany(mappedBy = "professional")
-    private List<WorkExperienceEntity> workExperienceList;
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    private List<WorkExperienceEntity> workExperiences;
 
     /**
      * The list of languages known by the professional.
      */
-    @OneToMany(mappedBy = "professional")
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
     private List<KnowLanguageEntity> knowLanguage;
 
     /**

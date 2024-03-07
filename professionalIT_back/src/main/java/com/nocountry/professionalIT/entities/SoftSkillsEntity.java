@@ -14,29 +14,26 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "skills" )
-public class SkillEntity {
+@Builder
+@Table(name = "soft_skills" )
+public class SoftSkillsEntity {
 
     /**
      * Unique identifier for the skill set.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "skill_id")
+    @Column(name = "soft_id", columnDefinition = "TINYINT")
     private Integer id;
 
     /**
      * Soft skill associated with the skill set.
      */
     @ManyToOne
-    @JoinColumn(name = "skill_ssid", referencedColumnName = "ss_id")
-    private SoftSkillEntity softSkill;
+    @JoinColumn(name = "soft_ssid")
+    private SSEntity ss;
 
-    /**
-     * Hard skill associated with the skill set.
-     */
     @ManyToOne
-    @JoinColumn(name = "skill_hsid", referencedColumnName = "hs_id")
-    private HardSkillEntity hardSkill;
-
+    @JoinColumn(name = "soft_profeid")
+    private ProfessionalEntity professional;
 }
