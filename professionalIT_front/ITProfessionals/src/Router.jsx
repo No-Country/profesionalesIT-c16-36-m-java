@@ -10,6 +10,7 @@ import Info from './pages/admin/professionals/Info';
 import RootLayout from './Layout';
 import Catalog from './pages/admin/professionals/Catalog';
 import ProfileContact from './pages/admin/commons/ChatContact';
+import { Company } from './pages/admin/companies/Company';
 
 export default function Root() {
   return (
@@ -25,6 +26,7 @@ export default function Root() {
           <Route path='profile/info' element={<Info/>} />
           <Route path='professionals/catalog' element={<Catalog/>} />
           <Route path='profile/contact' element={<ProfileContact/>} />
+          <Route path='company/info' element={<Company/>} />
         </Routes>
       </RootLayout>
     </Router>
