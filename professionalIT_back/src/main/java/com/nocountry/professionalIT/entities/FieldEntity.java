@@ -1,7 +1,10 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 /**
@@ -32,4 +35,8 @@ public class FieldEntity {
     @Column(name = "field_name")
     private String name;
 
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnore
+    private List<ProfessionalEntity> professional;
 }

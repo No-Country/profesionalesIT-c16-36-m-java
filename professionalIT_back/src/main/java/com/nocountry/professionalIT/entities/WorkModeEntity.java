@@ -32,6 +32,6 @@ public class WorkModeEntity {
     private ModeEntity mode;
 
     @ManyToOne
-    @JoinColumn(name = "profe_id")
+    @JoinColumn(name = "wm_profeid")
     private ProfessionalEntity professional;
 }

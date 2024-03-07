@@ -49,7 +49,7 @@ public class LocalityEntity {
     /**
      * The list of people associated with this locality.
      */
-    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "locality",cascade = CascadeType.PERSIST)
+    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "locality",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<PersonEntity> people;
 }
