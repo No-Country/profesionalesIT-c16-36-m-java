@@ -1,7 +1,10 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 /**
  * Entity class representing a soft skill.
@@ -14,8 +17,8 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "soft_skills" )
-public class SoftSkillEntity {
+@Table(name = "ss" )
+public class SSEntity {
 
     /**
      * Unique identifier for the soft skill.
@@ -30,4 +33,8 @@ public class SoftSkillEntity {
      */
     @Column(name = "ss_name")
     private String name;
+
+    @OneToMany(mappedBy = "ss", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<SoftSkillsEntity> softSkills;
 }

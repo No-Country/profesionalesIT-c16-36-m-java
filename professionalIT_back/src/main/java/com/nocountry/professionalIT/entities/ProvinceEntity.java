@@ -53,4 +53,11 @@ public class ProvinceEntity {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<LocalityEntity> localities;
+
+    /**
+     * The list of people associated with this province.
+     */
+    @OneToMany(targetEntity = PersonEntity.class, mappedBy = "province",cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<PersonEntity> people;
 }

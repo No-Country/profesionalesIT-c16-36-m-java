@@ -4,6 +4,8 @@ import com.nocountry.professionalIT.enums.LanguageLevel;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Entity class representing a known language with proficiency level.
  * @author Claudia Ortiz
@@ -31,6 +33,10 @@ public class KnowLanguageEntity {
     @ManyToOne
     @JoinColumn(name = "kl_langid", referencedColumnName = "lang_id")
     private LanguageEntity language;
+
+    @ManyToOne
+    @JoinColumn(name = "kl_profeid")
+    private ProfessionalEntity professional;
 
     /**
      * Proficiency level of the known language.

@@ -27,12 +27,12 @@ public interface LocalityRepository extends JpaRepository<LocalityEntity,Integer
     List<LocalityEntity> findLocalitiesByProvinceId (Integer id);
 
     /**
-     * Searches for localities based on the provided search string and province.
+     * Searches for localities by name and province ID.
      *
      * @param search   The search string to match against locality names.
-     * @param province The province entity to filter localities.
-     * @return A list of localities matching the search string and province.
+     * @param provinceId The ID of the province to filter localities.
+     * @return A list of localities matching the search string and province ID.
      */
-    @Query("SELECT l FROM LocalityEntity l WHERE l.name LIKE CONCAT('%',?1,'%') AND l.province = ?2")
-    List<LocalityEntity> searchLocalities (String search, ProvinceEntity province);
+    @Query("SELECT l FROM LocalityEntity l WHERE l.name LIKE CONCAT('%',?1,'%') AND l.province.id = ?2")
+    List<LocalityEntity> searchLocalities (String search, Integer provinceId);
 }

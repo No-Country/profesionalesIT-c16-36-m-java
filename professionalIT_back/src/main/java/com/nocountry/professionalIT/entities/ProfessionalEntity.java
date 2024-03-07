@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.professionalIT.enums.Seniority;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -49,24 +50,33 @@ public class ProfessionalEntity {
     /**
      * The list of work modes of the professional.
      */
-    @OneToMany(mappedBy = "professional")
+    @OneToMany(mappedBy = "professional", fetch=FetchType.EAGER)
+    @JsonIgnore
     private List<WorkModeEntity> workModes;
 
     /**
      * The availabilities of the professional.
      */
-    @OneToMany(mappedBy = "professional")
-    private List<AvailabilityEntity> availabities;
+    @ManyToOne
+    @JoinColumn(name = "profe_availid")
+    private AvailabilityEntity availabilities;
 
+    @Column(name = "profe_availinmediate")
     private Boolean availInmediate;
 
+    @Column(name = "profe_availtravel")
     private Boolean availTravel;
 
     /**
      * The list of skills of the professional.
      */
-    @OneToMany
-    private List<SkillEntity> skillList;
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<SoftSkillsEntity> softSkills;
+
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<HardSkillsEntity> hardSkills;
 
     /**
      * The person associated with this professional.
@@ -76,45 +86,47 @@ public class ProfessionalEntity {
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
-    @JoinColumn(name = "profe_personId",referencedColumnName = "person_id")
+    @JoinColumn(name = "profe_personid")
     private PersonEntity person;
 
     /**
      * The field of specialization of the professional.
      */
     @ManyToOne
-    @JoinColumn (name = "profe_fieldId",referencedColumnName = "field_id")
-    private  FieldEntity fieldId;
+    @JoinColumn (name = "profe_fieldid")
+    private  FieldEntity field;
 
     /**
      * The seniority level of the professional.
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "profe_seniId")
+    @Column(name = "profe_seniid")
     private Seniority seniority;
 
     /**
      * The list of work experiences of the professional.
      */
-    @OneToMany(mappedBy = "professional")
-    private List<WorkExperienceEntity> workExperienceList;
+    @OneToMany(mappedBy = "professional",  fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<WorkExperienceEntity> workExperiences;
 
     /**
      * The list of languages known by the professional.
      */
-    @OneToMany
-    private List<KnowLanguageEntity> knowLanguageList;
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<KnowLanguageEntity> knowLanguage;
 
     /**
      * The date when the professional was last updated.
      */
-    @Column(name = "profe_dateUpdated")
+    @Column(name = "profe_dateupdated")
     private LocalDateTime updatedDate;
 
     /**
      * The date when the professional was created.
      */
-    @Column(name = "createdDate")
+    @Column(name = "profe_createdate")
     private LocalDateTime createdDate;
 
 }

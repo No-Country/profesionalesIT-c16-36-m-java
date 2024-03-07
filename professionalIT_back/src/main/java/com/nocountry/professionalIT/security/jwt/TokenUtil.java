@@ -1,4 +1,4 @@
-package com.nocountry.professionalIT.utils;
+package com.nocountry.professionalIT.security.jwt;
 import com.nocountry.professionalIT.entities.UserEntity;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -40,3 +40,4 @@ public class TokenUtil {
         return claims;
     }
 }
+

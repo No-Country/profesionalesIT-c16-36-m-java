@@ -35,6 +35,6 @@ public class WorkModeEntity {
      * Professional associated with this work mode.
      */
     @ManyToOne
-    @JoinColumn(name = "profe_id")
+    @JoinColumn(name = "wm_profeid")
     private ProfessionalEntity professional;
 }

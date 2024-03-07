@@ -1,6 +1,5 @@
 package com.nocountry.professionalIT.repository;
 
-import com.nocountry.professionalIT.entities.CountryEntity;
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,12 +26,12 @@ public interface ProvinceRepository extends JpaRepository<ProvinceEntity,Integer
     List<ProvinceEntity> findProvincesByCountryId (Integer id);
 
     /**
-     * Searches for provinces by name and country.
+     * Searches for provinces by name and country ID.
      *
      * @param search The search string to match against province names.
-     * @param country The country entity to filter provinces.
-     * @return A list of provinces matching the search string and country.
+     * @param countryId The ID of the country to filter provinces.
+     * @return A list of provinces matching the search string and country ID.
      */
-    @Query("SELECT p FROM ProvinceEntity p WHERE p.name LIKE CONCAT('%',?1,'%') AND p.country = ?2")
-    List<ProvinceEntity> searchProvinces (String search, CountryEntity country);
+    @Query("SELECT p FROM ProvinceEntity p WHERE p.name LIKE CONCAT('%',?1,'%') AND p.country.id = ?2")
+    List<ProvinceEntity> searchProvinces (String search, Integer countryId);
 }

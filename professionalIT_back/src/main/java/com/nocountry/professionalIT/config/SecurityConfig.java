@@ -1,6 +1,6 @@
 package com.nocountry.professionalIT.config;
 
-import com.nocountry.professionalIT.utils.JwtAuthenticationFilter;
+import com.nocountry.professionalIT.utils.filters.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,13 +35,13 @@ public class SecurityConfig {
 
     RequestMatcher adminUrls = new OrRequestMatcher(
             Arrays.asList(
-                    new AntPathRequestMatcher("/api/user/**")
+                    new AntPathRequestMatcher("/api/v1/professionals/**")
             )
     );
 
     RequestMatcher publicUrls = new OrRequestMatcher(
-            new AntPathRequestMatcher("/api/auth/**")
-    );
+            new AntPathRequestMatcher("/api/v1/auth/**")
+            );
 
 
 
@@ -51,8 +51,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
-//                        .requestMatchers(publicUrls).permitAll()
-//                        .requestMatchers(adminUrls).hasAuthority("CLIENT")
+                        .requestMatchers(publicUrls).permitAll()
+                        .requestMatchers(adminUrls).hasAuthority("ADMIN")
                         .anyRequest().permitAll()
 
                 )
@@ -86,4 +86,3 @@ public class SecurityConfig {
     }
 
 }
-
