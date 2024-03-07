@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class HSEntity {
     @Column(name = "hs_name")
     private String name;
 
-    @OneToMany(mappedBy = "hs", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "hs", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<HardSkillsEntity> hardSkills;
 }

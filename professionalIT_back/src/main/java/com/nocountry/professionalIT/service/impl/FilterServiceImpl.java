@@ -1,6 +1,8 @@
 package com.nocountry.professionalIT.service.impl;
 
+import com.nocountry.professionalIT.dto.ProfessionalEntityDto;
 import com.nocountry.professionalIT.entities.ProfessionalEntity;
+import com.nocountry.professionalIT.mapper.ProfessionalMapper;
 import com.nocountry.professionalIT.repository.ProfessionalRepository;
 import com.nocountry.professionalIT.service.FilterService;
 import com.nocountry.professionalIT.specification.ProfessionalSpecification;

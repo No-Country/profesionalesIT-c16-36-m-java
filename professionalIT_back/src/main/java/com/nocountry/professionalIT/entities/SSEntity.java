@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,7 @@ public class SSEntity {
     @Column(name = "ss_name")
     private String name;
 
-    @OneToMany(mappedBy = "ss", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "ss", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<SoftSkillsEntity> softSkills;
 }

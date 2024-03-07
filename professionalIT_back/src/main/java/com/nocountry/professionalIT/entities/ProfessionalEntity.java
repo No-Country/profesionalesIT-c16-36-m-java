@@ -70,11 +70,11 @@ public class ProfessionalEntity {
     /**
      * The list of skills of the professional.
      */
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<SoftSkillsEntity> softSkills;
 
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<HardSkillsEntity> hardSkills;
 

@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,7 @@ public class LanguageEntity {
     @Column(name = "lang_name")
     private String name;
 
-    @OneToMany(mappedBy = "language", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "language", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<KnowLanguageEntity> knowLanguages;
 }
