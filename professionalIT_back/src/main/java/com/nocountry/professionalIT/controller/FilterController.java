@@ -20,7 +20,8 @@ public class FilterController {
 
         @GetMapping("/filter")
         public ResponseEntity<List<ProfessionalEntity>> getFilteredProfessionals(
-                @RequestParam(required = false) List<Integer> skillIds,
+                @RequestParam(required = false) List<Integer> hardSkillIds,
+                @RequestParam(required = false) List<Integer> softSkillIds,
                 @RequestParam(required = false) List<Integer> workModeIds,
                 @RequestParam(required = false) Boolean hasAvailInmediate,
                 @RequestParam(required = false) Boolean hasAvailTravel,
@@ -32,7 +33,7 @@ public class FilterController {
                 @RequestParam(required = false) Integer localityId) {
 
             List<ProfessionalEntity> filteredProfessionals = filterService.getProfessionalsWithFilters(
-                    skillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
+                    hardSkillIds,softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
             if(filteredProfessionals != null && !filteredProfessionals.isEmpty()) {
                 return ResponseEntity.ok(filteredProfessionals);
             }

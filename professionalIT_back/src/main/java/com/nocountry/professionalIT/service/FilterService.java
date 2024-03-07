@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface FilterService {
     List<ProfessionalEntity> getProfessionalsWithFilters(
-            List<Integer> skillIds,
+            List<Integer> hardSkillIds,
+            List<Integer> softSkillIds,
             List<Integer> workModeIds,
             Boolean hasAvailInmediate,
             Boolean hasAvailTravel,
