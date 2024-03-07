@@ -50,7 +50,8 @@ public class ProfessionalEntity {
     /**
      * The list of work modes of the professional.
      */
-    @OneToMany(mappedBy = "professional")
+    @OneToMany(mappedBy = "professional", fetch=FetchType.EAGER)
+    @JsonIgnore
     private List<WorkModeEntity> workModes;
 
     /**
@@ -69,11 +70,11 @@ public class ProfessionalEntity {
     /**
      * The list of skills of the professional.
      */
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<SoftSkillsEntity> softSkills;
 
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<HardSkillsEntity> hardSkills;
 
@@ -105,13 +106,15 @@ public class ProfessionalEntity {
     /**
      * The list of work experiences of the professional.
      */
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional",  fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<WorkExperienceEntity> workExperiences;
 
     /**
      * The list of languages known by the professional.
      */
-    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<KnowLanguageEntity> knowLanguage;
 
     /**
