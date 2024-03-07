@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.specification;
 
+import com.nocountry.professionalIT.entities.KnowLanguageEntity;
 import com.nocountry.professionalIT.entities.ProfessionalEntity;
 import com.nocountry.professionalIT.enums.Seniority;
 import jakarta.persistence.criteria.Join;
@@ -8,7 +9,6 @@ import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProfessionalSpecification {
     public static Specification<ProfessionalEntity> buildDynamicFilters(
@@ -29,14 +29,34 @@ public class ProfessionalSpecification {
             List<Predicate> predicates = new ArrayList<>();
             if (hardSkillIds != null && !hardSkillIds.isEmpty()) {
                 Join<ProfessionalEntity, ?> hardSkillsJoin = root.join("hardSkills");
-                Path<?> hardSkillsPath = hardSkillsJoin.get("hs").get("id");
-                predicates.add(hardSkillsPath.in(hardSkillIds));
+
+                List<Predicate> hardSkillPredicates = new ArrayList<>();
+
+                for (Integer hardSkillId : hardSkillIds) {
+                    Predicate hardSkillPredicate = criteriaBuilder.equal(hardSkillsJoin.get("hs").get("id"), hardSkillId);
+
+                    hardSkillPredicates.add(hardSkillPredicate);
+                }
+
+                Predicate hardSkillsPredicate = criteriaBuilder.and(hardSkillPredicates.toArray(new Predicate[0]));
+                predicates.add(hardSkillsPredicate);
             }
+
             if (softSkillIds != null && !softSkillIds.isEmpty()) {
                 Join<ProfessionalEntity, ?> softSkillsJoin = root.join("softSkills");
-                Path<?> softSkillsPath = softSkillsJoin.get("ss").get("id");
-                predicates.add(softSkillsPath.in(softSkillIds));
+
+                List<Predicate> softSkillPredicates = new ArrayList<>();
+
+                for (Integer softSkillId : softSkillIds) {
+                    Predicate softSkillPredicate = criteriaBuilder.equal(softSkillsJoin.get("ss").get("id"), softSkillId);
+
+                    softSkillPredicates.add(softSkillPredicate);
+                }
+
+                Predicate softSkillsPredicate = criteriaBuilder.and(softSkillPredicates.toArray(new Predicate[0]));
+                predicates.add(softSkillsPredicate);
             }
+
             if (workModeIds != null && !workModeIds.isEmpty()) {
                 Join<ProfessionalEntity, ?> workModeJoin = root.join("workMode");
                 Path<?> workModePath = workModeJoin.get("id");
@@ -60,10 +80,15 @@ public class ProfessionalSpecification {
                 predicates.add(root.get("seniority").in(seniorityEnumList));
             }
             if (knowLanguageList != null && !knowLanguageList.isEmpty()) {
-                Join<ProfessionalEntity, ?> knowLanguageJoin = root.join("knowLanguage");
-                predicates.add(knowLanguageJoin.get("language").get("id").in(knowLanguageList));
+                Join<KnowLanguageEntity, ?> knowLanguageJoin = root.join("knowLanguage");
+                List<Predicate> knowLanguagePredicates = new ArrayList<>();
+                for (Integer knowLanguageId : knowLanguageList) {
+                    Predicate knowLanguagePredicate = criteriaBuilder.equal(knowLanguageJoin.get("language").get("id"), knowLanguageId);
+                    knowLanguagePredicates.add(knowLanguagePredicate);
+                }
+                Predicate knowLanguagePredicate = criteriaBuilder.or(knowLanguagePredicates.toArray(new Predicate[0]));
+                predicates.add(knowLanguagePredicate);
             }
-
             if (countryId != null) {
                 Join<ProfessionalEntity, ?> countryJoin = root.join("person").join("country");
                 predicates.add(countryJoin.get("id").in(countryId));
