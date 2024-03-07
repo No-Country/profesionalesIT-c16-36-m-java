@@ -2,15 +2,18 @@ package com.nocountry.professionalIT.specification;
 
 import com.nocountry.professionalIT.entities.ProfessionalEntity;
 import com.nocountry.professionalIT.enums.Seniority;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProfessionalSpecification {
     public static Specification<ProfessionalEntity> buildDynamicFilters(
-            List<Integer> skillIds,
+            List<Integer> hardSkillIds,
+            List<Integer> softSkillIds,
             List<Integer> workModeIds,
             Boolean hasAvailInmediate,
             Boolean hasAvailTravel,
@@ -22,59 +25,66 @@ public class ProfessionalSpecification {
             Integer localityId) {
 
         return (root, query, criteriaBuilder) -> {
-            Predicate dynamicPredicate = criteriaBuilder.conjunction();
 
-            if (skillIds != null && !skillIds.isEmpty()) {
-                dynamicPredicate = criteriaBuilder.and(dynamicPredicate, root.join("skillList").get("id").in(skillIds));
+            List<Predicate> predicates = new ArrayList<>();
+            if (hardSkillIds != null && !hardSkillIds.isEmpty()) {
+                Join<ProfessionalEntity, ?> hardSkillsJoin = root.join("hardSkills");
+                Path<?> hardSkillsPath = hardSkillsJoin.get("hs").get("id");
+                predicates.add(hardSkillsPath.in(hardSkillIds));
+            }
+            if (softSkillIds != null && !softSkillIds.isEmpty()) {
+                Join<ProfessionalEntity, ?> softSkillsJoin = root.join("softSkills");
+                Path<?> softSkillsPath = softSkillsJoin.get("ss").get("id");
+                predicates.add(softSkillsPath.in(softSkillIds));
             }
             if (workModeIds != null && !workModeIds.isEmpty()) {
-                dynamicPredicate = criteriaBuilder.or(
-                        dynamicPredicate,
-                        root.join("workModes").join("mode").get("id").in(workModeIds)
-                );
+                Join<ProfessionalEntity, ?> workModeJoin = root.join("workMode");
+                Path<?> workModePath = workModeJoin.get("id");
+                predicates.add(workModePath.in(workModeIds));
             }
             if (hasAvailInmediate != null) {
-                dynamicPredicate = criteriaBuilder.and(dynamicPredicate, criteriaBuilder.equal(root.get("availInmediate"), hasAvailInmediate));
+                predicates.add(criteriaBuilder.equal(root.get("availInmediate"), hasAvailInmediate));
             }
             if (hasAvailTravel != null) {
-                dynamicPredicate = criteriaBuilder.and(dynamicPredicate, criteriaBuilder.equal(root.get("availTravel"), hasAvailTravel));
+                predicates.add(criteriaBuilder.equal(root.get("availTravel"), hasAvailTravel));
             }
             if (fieldIds != null) {
-                dynamicPredicate = criteriaBuilder.or(dynamicPredicate, root.join("fieldId").get("id").in(fieldIds));
+                Join<ProfessionalEntity, ?> fieldJoin = root.join("field");
+                predicates.add(fieldJoin.get("id").in(fieldIds));
             }
+
             if (seniorities != null && !seniorities.isEmpty()) {
-                dynamicPredicate = criteriaBuilder.or(
-                        dynamicPredicate,
-                        root.get("seniority").in(seniorities.stream().map(Seniority::valueOf).toList())
-                );
+                List<Seniority> seniorityEnumList = seniorities.stream()
+                        .map(Seniority::valueOf)
+                                .toList();
+                predicates.add(root.get("seniority").in(seniorityEnumList));
             }
             if (knowLanguageList != null && !knowLanguageList.isEmpty()) {
-                dynamicPredicate = criteriaBuilder.and(
-                        dynamicPredicate,
-                        root.join("knowLanguage").join("language").get("id").in(knowLanguageList)
-                );
-            }
-            if (countryId != null) {
-                dynamicPredicate = criteriaBuilder.and(
-                        dynamicPredicate,
-                        root.join("person").join("country").get("id").in(countryId)
-                );
-            }
-            if (provinceId != null) {
-                dynamicPredicate = criteriaBuilder.and(
-                        dynamicPredicate,
-                        root.join("person").join("province").get("id").in(provinceId)
-                );
-            }
-            if (localityId != null) {
-                dynamicPredicate = criteriaBuilder.and(
-                        dynamicPredicate,
-                        root.join("person").join("province").join("locality").get("id").in(provinceId)
-                );
+                Join<ProfessionalEntity, ?> knowLanguageJoin = root.join("knowLanguage");
+                predicates.add(knowLanguageJoin.get("language").get("id").in(knowLanguageList));
             }
 
+            if (countryId != null) {
+                Join<ProfessionalEntity, ?> countryJoin = root.join("person").join("country");
+                predicates.add(countryJoin.get("id").in(countryId));
+            }
+
+            if (provinceId != null) {
+                Join<ProfessionalEntity, ?> provinceJoin = root.join("person").join("province");
+                Path<?> provincePath = provinceJoin.get("id");
+                predicates.add(provincePath.in(provinceId));
+            }
+
+            if (localityId != null) {
+                Join<ProfessionalEntity, ?> localityJoin = root.join("person").join("province").join("localities");
+                Path<?> localityPath = localityJoin.get("id");
+                predicates.add(localityPath.in(localityId));
+            }
+
+            Predicate dynamicPredicate = criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+            query.where(dynamicPredicate);
             return dynamicPredicate;
+
         };
     }
-
 }
