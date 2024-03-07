@@ -75,7 +75,7 @@ public class WorkExperienceEntity {
      * Professional associated with the work experience.
      */
     @ManyToOne
-    @JoinColumn(name = "profe_id")
+    @JoinColumn(name = "we_profeid")
     private ProfessionalEntity professional;
 
 }
