@@ -48,16 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .user(user)
                 .name(personDTO.getName())
                 .lastName(personDTO.getLastName())
-                .gender(Gender.valueOf(personDTO.getGender().name()))
-                .country(CountryEntity.builder()
-                        .id(personDTO.getCountry().getId())
-                        .build())
-                .province(ProvinceEntity.builder()
-                        .id(personDTO.getProvince().getId())
-                        .build())
-                .locality(LocalityEntity.builder()
-                        .id(personDTO.getLocality().getId())
-                        .build())
+                .img(personDTO.getImg())
                 .build();
 
         CustomerEntity customer = CustomerEntity.builder()
