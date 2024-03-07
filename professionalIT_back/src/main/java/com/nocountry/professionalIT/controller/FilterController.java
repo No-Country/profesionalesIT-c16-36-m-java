@@ -21,7 +21,7 @@ public class FilterController {
         private final FilterServiceImpl filterService;
         private final ProfessionalMapper mapper;
         @GetMapping("/filter")
-        public ResponseEntity<List<ProfessionalEntityDto>> getFilteredProfessionals(
+        public ResponseEntity<List<ProfessionalEntity>> getFilteredProfessionals(
                 @RequestParam(required = false) List<Integer> hardSkillIds,
                 @RequestParam(required = false) List<Integer> softSkillIds,
                 @RequestParam(required = false) List<Integer> workModeIds,
@@ -37,7 +37,7 @@ public class FilterController {
             List<ProfessionalEntity> filteredProfessionals = filterService.getProfessionalsWithFilters(
                     hardSkillIds,softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
             if(filteredProfessionals != null && !filteredProfessionals.isEmpty()) {
-                return ResponseEntity.ok(filteredProfessionals.stream().map(mapper::toDto).toList());
+                return ResponseEntity.ok(filteredProfessionals);
             }
 
             return ResponseEntity.notFound().build();
