@@ -19,7 +19,7 @@ public interface KnownLanguageService {
      *
      * @return A list of KnownLanguageDto objects representing known languages.
      */
-    List<KnownLanguageDto> KnownLanguageList();
+    List<KnownLanguageDto> knownLanguageList();
 
     /**
      * Retrieves a known language by its unique identifier.

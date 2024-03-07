@@ -23,7 +23,7 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-public class WorkModeImpl implements WorkModeService {
+public class WorkModeServiceImpl implements WorkModeService {
 
     private final WorkModeRepository repository;
     private final WorkModeMapper mapper;

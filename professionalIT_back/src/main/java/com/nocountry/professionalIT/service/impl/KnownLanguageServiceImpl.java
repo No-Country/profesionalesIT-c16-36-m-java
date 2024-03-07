@@ -34,7 +34,7 @@ public class KnownLanguageServiceImpl implements KnownLanguageService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<KnownLanguageDto> KnownLanguageList() {
+    public List<KnownLanguageDto> knownLanguageList() {
         List<KnowLanguageEntity> knownLanguageList = repository.findAll();
         return knownLanguageList.stream().map(mapper::toDto).toList();
     }
