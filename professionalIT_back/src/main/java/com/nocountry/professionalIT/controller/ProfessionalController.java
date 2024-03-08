@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/professional")
@@ -26,5 +28,10 @@ public class ProfessionalController {
     public ResponseEntity<Page<ProfessionalEntity>> findAll(@RequestParam(value = "page",defaultValue = "0") int page,
                                                             @RequestParam(value = "size",defaultValue = "10") int size){
         return ResponseEntity.ok().body(professionalService.findAll(page, size));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfessionalEntity> findProfessional(@PathVariable UUID id){
+        return ResponseEntity.ok().body(professionalService.findById(id));
     }
 }

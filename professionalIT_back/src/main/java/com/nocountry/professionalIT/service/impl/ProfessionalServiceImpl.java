@@ -8,10 +8,13 @@ import com.nocountry.professionalIT.entities.UserEntity;
 import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.repository.ProfessionalRepository;
 import com.nocountry.professionalIT.service.ProfessionalService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -43,5 +46,11 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     @Override
     public Page<ProfessionalEntity> findAll(int page, int size) {
         return professionalRepository.findAll(PageRequest.of(page, size));
+    }
+
+    @Override
+    public ProfessionalEntity findById(UUID id) {
+        return professionalRepository.findById(id)
+                .orElseThrow(() -> new  EntityNotFoundException("Profesional no encontrado"));
     }
 }
