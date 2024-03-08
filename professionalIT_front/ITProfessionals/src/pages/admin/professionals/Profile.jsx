@@ -100,6 +100,7 @@ export default function Profile() {
                             <button style={{ borderRadius: "0.5rem" }} className="mx-auto rounded-lg bg-[#00ADB5] px-3 py-1 text-bold text-[#EEEEEE]">
                                 Database Management
                             </button>
+                            
                             <button style={{ borderRadius: "0.5rem" }} className="mx-auto rounded-lg bg-[#00ADB5] px-3 py-1 text-bold text-[#EEEEEE]">Python</button>
                             </div>
                         </div>
