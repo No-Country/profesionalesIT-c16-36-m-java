@@ -3,11 +3,10 @@ package com.nocountry.professionalIT.service.impl;
 import com.nocountry.professionalIT.dto.PersonDTO;
 import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.*;
-import com.nocountry.professionalIT.enums.Gender;
 import com.nocountry.professionalIT.enums.Role;
-import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.CustomerRepository;
 import com.nocountry.professionalIT.service.CustomerService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -62,11 +61,11 @@ public class CustomerServiceImpl implements CustomerService {
      *
      * @param id The ID of the customer to find.
      * @return The customer entity with the specified ID.
-     * @throws ObjectNotFoundException If no customer is found with the given ID.
+     * @throws EntityNotFoundException If no customer is found with the given ID.
      */
     @Override
     public CustomerEntity findById(UUID id) {
-        return customerRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Cliente no encontrado"));
+        return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
     }
 
     /**
