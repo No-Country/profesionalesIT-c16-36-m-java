@@ -2,6 +2,7 @@ package com.nocountry.professionalIT.dto;
 
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Seniority;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
@@ -24,21 +25,21 @@ public class ProfessionalEntityDto implements Serializable {
 
     AvailabilityEntity availabilities;
 
-    @NotNull
     Boolean availInmediate;
 
-    @NotNull
     Boolean availTravel;
 
     List<SoftSkillsEntity> softSkills;
 
     List<HardSkillsEntity> hardSkills;
 
-    PersonEntity person;
+    @Valid
+    PersonDTO person;
+
+    UserDTO user;
 
     FieldEntity field;
 
-    @NotNull
     Seniority seniority;
 
     List<WorkExperienceEntity> workExperiences;
