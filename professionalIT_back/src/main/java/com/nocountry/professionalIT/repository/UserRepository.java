@@ -10,8 +10,4 @@ import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     public Optional<UserEntity> findByEmail(String email);
-
-    // Definir una consulta personalizada para recuperar correos electrónicos de usuarios con el rol "admin"
-    @Query("SELECT u.email FROM UserEntity u WHERE u.role = 'ADMIN'")
-    List<String> getAllAdminEmails();
 }

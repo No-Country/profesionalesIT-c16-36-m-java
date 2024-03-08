@@ -52,24 +52,20 @@ public class PersonDTO {
     /**
      * The person's gender, which must be specified.
      */
-    @NotNull(message = "Seleccione su genero")
     private Gender gender;
 
     /**
      * The person's country of residence, which must be specified.
      */
-    @NotNull(message = "Seleccione su pais")
     private CountryEntity country;
 
     /**
      * The person's province of residence, which must be specified.
      */
-    @NotNull(message = "Seleccione su provincia")
     private ProvinceEntity province;
 
     /**
      * The person's locality of residence, which must be specified.
      */
-    @NotNull(message = "Seleccione su localidad ")
     private LocalityEntity locality;
 }
