@@ -35,6 +35,8 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String email;
 
+    private String password;
+
     private Byte status;
 
     @Enumerated(EnumType.STRING)
@@ -46,6 +48,8 @@ public class UserEntity implements UserDetails {
     @PrePersist
     public void prePersist() {
         createdDate = LocalDateTime.now();
+        updatedDate = LocalDateTime.now();
+
         if (status == null) {
             status = 1;
         }
