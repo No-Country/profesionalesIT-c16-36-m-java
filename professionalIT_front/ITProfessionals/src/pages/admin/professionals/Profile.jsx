@@ -36,14 +36,8 @@ export default function Profile() {
                         <MapPinIcon className="h-4 w-4" />
                         <span>New York, NY</span>
                         </div>
-                        <div className="flex items-center space-x-2 text-sm">
-                        <CheckIcon className="h-4 w-4" />
-                        <span>Disponibilidad Inmediata</span>
-                        </div>
-                        <div className="flex items-center space-x-2 text-sm">
-                        <GlobeIcon className="h-4 w-4" />
-                        <span>Disponibilidad de trasladarse</span>
-                        </div>
+                        
+                    
                         <div className="flex justify-center">
                     <a
                         className="inline-flex h-10 items-center justify-center rounded-2xl border border-gray-200 bg-[#008A90] p-2 px-8 text-sm font-medium shadow-sm gap-2 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
@@ -54,19 +48,6 @@ export default function Profile() {
 
                     </div>
                     </div>
-                    <div className="grid gap-2 justify-center">
-                        <div style={{ borderRadius: "0.5rem" }} className="text-center rounded-lg bg-[#393E46] px-3 py-1 text-sm font-bold text-[#EEEEEE] dark:bg-gray-800">Modalidad de trabajo</div>    
-                            <div className="flex flex-wrap gap-1">
-                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Presencial
-                            </button>
-                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Híbrido
-                            </button>
-                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Remoto
-                            </button>
-                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Freelance
-                            </button>
-                            </div>
-                    </div>    
 
                     <div className="grid gap-2">
                         <div style={{ borderRadius: "0.5rem" }} className="text-center rounded-lg bg-[#393E46] px-3 py-1 text-sm font-bold text-[#EEEEEE] dark:bg-gray-800">Sobre mi</div>
@@ -77,6 +58,18 @@ export default function Profile() {
                             </p>
                         </div>
                     </div>
+
+                    <div className="flex justify-center space-x-8">   
+                    <div className="flex items-center space-x-2 text-sm">
+                        <CheckIcon color="#00ADB5" className="h-4 w-4 " />
+                        <span className="text-[#00ADB5]">Disponibilidad Inmediata</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                        <GlobeIcon color="#00ADB5" className="h-4 w-4" />
+                        <span  className="text-[#00ADB5]">Disponibilidad de trasladarse</span>
+                        </div>
+                    </div>    
+
                     <div className="flex justify-center gap-2">
                         <div className="w-1/2">
                             <div style={{ borderRadius: "0.5rem" }} className="text-center rounded-lg bg-[#393E46] px-3 py-1 text-sm font-bold text-[#EEEEEE] dark:bg-gray-800 ">Soft Skills</div>
@@ -112,6 +105,20 @@ export default function Profile() {
                         </div>
                     </div>
                   
+                    <div className="grid gap-2 justify-center">
+                        <div style={{ borderRadius: "0.5rem" }} className="text-center rounded-lg bg-[#393E46] px-3 py-1 text-sm font-bold text-[#EEEEEE] dark:bg-gray-800">Modalidad de trabajo</div>    
+                            <div className="flex flex-wrap gap-1">
+                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Presencial
+                            </button>
+                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Híbrido
+                            </button>
+                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Remoto
+                            </button>
+                            <button style={{ borderRadius: "0.5rem", border: "2px solid #393E46" }} className="mx-auto rounded-lg px-3 py-1 text-bold text-[#EEEEEE]">Freelance
+                            </button>
+                            </div>
+                    </div>
+
                     <Card>
                         <CardHeader>
                         <div>
@@ -214,6 +221,7 @@ export default function Profile() {
                     </div>
                         </CardContent>
                     </Card>
+
                     <div className="flex justify-center">
                     <a
                         className="inline-flex h-10 items-center justify-center rounded-2xl border border-gray-200 bg-[#008A90] p-2 px-8 text-sm font-medium shadow-sm gap-2 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
@@ -353,7 +361,7 @@ function LanguageIcon(props) {
     );
   }
   
-  function GlobeIcon(props) {
+  function GlobeIcon({ color = "#000", ...props }) {
     return (
         <svg
         {...props}
@@ -362,7 +370,7 @@ function LanguageIcon(props) {
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="currentColor"
+        stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -372,7 +380,7 @@ function LanguageIcon(props) {
     </svg>
     )
   }
-  function CheckIcon(props) {
+  function CheckIcon({ color = "#000", ...props }) {
     return (
         <svg
         {...props}
@@ -381,7 +389,7 @@ function LanguageIcon(props) {
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="currentColor"
+        stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
