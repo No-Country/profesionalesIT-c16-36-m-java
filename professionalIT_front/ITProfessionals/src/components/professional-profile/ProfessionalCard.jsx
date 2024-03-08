@@ -32,7 +32,7 @@ export default function ProfessionalCard({ professional}) {
             <Link className="flex justify-center" to="/profile/contact">
               <Button size="sm">Contact</Button>
             </Link>
-            <Link className="flex justify-center" to={`/profile/admin/${professional.id}`}>
+            <Link className="flex justify-center" to="/profile/admin">
                 <Button size="sm" variant="outline">
                     View Profile
                 </Button>
