@@ -3,11 +3,10 @@ package com.nocountry.professionalIT.service.impl;
 import com.nocountry.professionalIT.dto.PersonDTO;
 import com.nocountry.professionalIT.dto.UserDTO;
 import com.nocountry.professionalIT.entities.*;
-import com.nocountry.professionalIT.enums.Gender;
 import com.nocountry.professionalIT.enums.Role;
-import com.nocountry.professionalIT.exception.ObjectNotFoundException;
 import com.nocountry.professionalIT.repository.RecruiterRepository;
 import com.nocountry.professionalIT.service.RecruiterService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -48,16 +47,7 @@ public class RecruiterServiceImpl implements RecruiterService {
                 .user(user)
                 .name(personDTO.getName())
                 .lastName(personDTO.getLastName())
-                .gender(Gender.valueOf(personDTO.getGender().name()))
-                .country(CountryEntity.builder()
-                        .id(personDTO.getCountry().getId())
-                        .build())
-                .province(ProvinceEntity.builder()
-                        .id(personDTO.getProvince().getId())
-                        .build())
-                .locality(LocalityEntity.builder()
-                        .id(personDTO.getLocality().getId())
-                        .build())
+                .img(personDTO.getImg())
                 .build();
 
         RecruiterEntity recruiter = RecruiterEntity.builder()
@@ -71,11 +61,11 @@ public class RecruiterServiceImpl implements RecruiterService {
      *
      * @param id The ID of the recruiter to find.
      * @return The recruiter entity with the specified ID.
-     * @throws ObjectNotFoundException If no recruiter is found with the given ID.
+     * @throws EntityNotFoundException If no recruiter is found with the given ID.
      */
     @Override
     public RecruiterEntity findById(UUID id) {
-        return recruiterRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Reclutador no encontrado"));
+        return recruiterRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Reclutador no encontrado"));
     }
 
     /**
