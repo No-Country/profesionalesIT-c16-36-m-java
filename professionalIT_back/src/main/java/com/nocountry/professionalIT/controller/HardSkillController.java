@@ -3,7 +3,9 @@ package com.nocountry.professionalIT.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.professionalIT.dto.HSDto;
 import com.nocountry.professionalIT.dto.HardSkillsDto;
+import com.nocountry.professionalIT.service.HSService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 public class HardSkillController {
 
 	private final HardSkillServiceImpl hardSkillService;
+    private final HSService HSService;
+
     
 
     @PostMapping("/add")
@@ -35,8 +39,8 @@ public class HardSkillController {
     }
 
     @GetMapping("/get-all")
-    public List<HardSkillsDto> getAll() {
-        return hardSkillService.hardSkillList();
+    public List<HSDto> getAll() {
+        return HSService.skillList();
     }
 
     @GetMapping("/get/{id}")
