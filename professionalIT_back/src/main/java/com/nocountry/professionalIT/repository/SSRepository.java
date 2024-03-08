@@ -1,5 +1,6 @@
 package com.nocountry.professionalIT.repository;
 
+import com.nocountry.professionalIT.entities.SSEntity;
 import com.nocountry.professionalIT.entities.SoftSkillsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 /**
@@ -10,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version 1.0
  * @since 2024-02-26
  */
-public interface SkillRepository extends JpaRepository<SoftSkillsEntity, Integer> {
+public interface SSRepository extends JpaRepository<SSEntity, Integer> {
 }
