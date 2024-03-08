@@ -62,7 +62,7 @@ public class WorkExperienceDto {
      */
     @JsonIgnore
     @ManyToOne
-    private ProfessionalDto professional;
+    private ProfessionalEntityDto professional;
 
 }
 

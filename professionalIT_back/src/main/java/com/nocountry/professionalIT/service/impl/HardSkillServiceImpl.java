@@ -1,11 +1,10 @@
 package com.nocountry.professionalIT.service.impl;
 
-
-import com.nocountry.professionalIT.dto.HardSkillDto;
-import com.nocountry.professionalIT.entities.HardSkillEntity;
-import com.nocountry.professionalIT.mapper.HardSkillMapper;
-import com.nocountry.professionalIT.repository.HardSkillRepository;
-import com.nocountry.professionalIT.service.HardSkillService;
+import com.nocountry.professionalIT.dto.HardSkillsDto;
+import com.nocountry.professionalIT.entities.HardSkillsEntity;
+import com.nocountry.professionalIT.mapper.HardSkillsMapper;
+import com.nocountry.professionalIT.repository.HardSkillsRepository;
+import com.nocountry.professionalIT.service.HardSkillsService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,10 +22,10 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-public class HardSkillServiceImpl implements HardSkillService {
+public class HardSkillServiceImpl implements HardSkillsService {
 
-    private final HardSkillRepository repository;
-    private final HardSkillMapper mapper;
+    private final HardSkillsRepository repository;
+    private final HardSkillsMapper mapper;
 
     /**
      * Retrieves a list of all hard skills.
@@ -35,8 +34,8 @@ public class HardSkillServiceImpl implements HardSkillService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<HardSkillDto> hardSkillList() {
-        List<HardSkillEntity> hardSkillList = repository.findAll();
+    public List<HardSkillsDto> hardSkillList() {
+        List<HardSkillsEntity> hardSkillList = repository.findAll();
         return hardSkillList.stream().map(mapper::toDto).toList();
     }
 
@@ -48,7 +47,7 @@ public class HardSkillServiceImpl implements HardSkillService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Optional<HardSkillDto> findById(Integer id) {
+    public Optional<HardSkillsDto> findById(Integer id) {
         return repository.findById(id).map(mapper::toDto);
     }
 
@@ -60,9 +59,9 @@ public class HardSkillServiceImpl implements HardSkillService {
      */
     @Transactional
     @Override
-    public HardSkillDto save(HardSkillDto hardSkill) {
-        HardSkillEntity hardSkillSaved=mapper.toEntity(hardSkill);
-        return mapper.toDto(repository.save(hardSkillSaved));
+    public HardSkillsDto save(HardSkillsDto hardSkill) {
+        HardSkillsEntity hardSkillsSaved=mapper.toEntity(hardSkill);
+        return mapper.toDto(repository.save(hardSkillsSaved));
     }
 
     /**
@@ -75,13 +74,13 @@ public class HardSkillServiceImpl implements HardSkillService {
      */
     @Override
     @Transactional
-    public HardSkillDto update(Integer id, HardSkillDto hardSkill) {
-        Optional<HardSkillEntity> hardSkillOptional = Optional.ofNullable(repository
+    public HardSkillsDto update(Integer id, HardSkillsDto hardSkill) {
+        Optional<HardSkillsEntity> hardSkillOptional = Optional.ofNullable(repository
                 .findById(id).orElseThrow(() -> new EntityNotFoundException("Hard skill not found with id: " + id)));
 
         if (hardSkillOptional.isPresent()) {
-            HardSkillEntity toUpdate = hardSkillOptional.get();
-            toUpdate.setName(hardSkill.getName());
+            HardSkillsEntity toUpdate = hardSkillOptional.get();
+            toUpdate.setHs(mapper.toEntity(hardSkill).getHs());
             return mapper.toDto(repository.save(toUpdate));
         }
         return null;

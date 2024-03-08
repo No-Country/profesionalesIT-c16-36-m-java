@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.mapper;
 
-import com.nocountry.professionalIT.dto.SoftSkillDto;
-import com.nocountry.professionalIT.entities.SoftSkillEntity;
+import com.nocountry.professionalIT.dto.SoftSkillsDto;
+import com.nocountry.professionalIT.entities.SoftSkillsEntity;
 import org.mapstruct.*;
 /**
  * Mapper interface for converting between SoftSkillDto and SoftSkillEntity.
@@ -13,15 +13,15 @@ import org.mapstruct.*;
  * @since 2024-03-01
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface SoftSkillMapper {
+public interface SoftSkillsMapper {
 
     /**
      * Converts a SoftSkillDto object to a SoftSkillEntity object.
      *
-     * @param softSkillDto The SoftSkillDto object to be converted.
+     * @param softSkillsDto The SoftSkillDto object to be converted.
      * @return The corresponding SoftSkillEntity object.
      */
-    SoftSkillEntity toEntity(SoftSkillDto softSkillDto);
+    SoftSkillsEntity toEntity(SoftSkillsDto softSkillsDto);
 
     /**
      * Converts a SoftSkillEntity object to a SoftSkillDto object.
@@ -29,7 +29,7 @@ public interface SoftSkillMapper {
      * @param softSkillEntity The SoftSkillEntity object to be converted.
      * @return The corresponding SoftSkillDto object.
      */
-    SoftSkillDto toDto(SoftSkillEntity softSkillEntity);
+    SoftSkillsDto toDto(SoftSkillsEntity softSkillEntity);
 
     /**
      * Performs a partial update from a SoftSkillDto to an existing SoftSkillEntity.
@@ -40,5 +40,5 @@ public interface SoftSkillMapper {
      * @return The updated SoftSkillEntity after applying the non-null properties from the SoftSkillDto.
      */
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    SoftSkillEntity partialUpdate(SoftSkillDto softSkillDto, @MappingTarget SoftSkillEntity softSkillEntity);
+    SoftSkillsEntity partialUpdate(SoftSkillsDto softSkillDto, @MappingTarget SoftSkillsEntity softSkillEntity);
 }

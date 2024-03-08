@@ -31,5 +31,5 @@ public class WorkModeDto {
      */
     @JsonIgnore
     @ManyToOne
-    private ProfessionalDto professional;
+    private ProfessionalEntityDto professional;
 }

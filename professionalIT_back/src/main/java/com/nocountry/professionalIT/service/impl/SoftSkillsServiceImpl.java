@@ -1,9 +1,9 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.SoftSkillDto;
-import com.nocountry.professionalIT.entities.SoftSkillEntity;
-import com.nocountry.professionalIT.mapper.SoftSkillMapper;
-import com.nocountry.professionalIT.repository.SoftSkillRepository;
+import com.nocountry.professionalIT.dto.SoftSkillsDto;
+import com.nocountry.professionalIT.entities.SoftSkillsEntity;
+import com.nocountry.professionalIT.mapper.SoftSkillsMapper;
+import com.nocountry.professionalIT.repository.SoftSkillsRepository;
 import com.nocountry.professionalIT.service.SoftSkillService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +23,10 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-public class SoftSkillServiceImpl implements SoftSkillService {
+public class SoftSkillsServiceImpl implements SoftSkillService {
 
-    private final SoftSkillRepository repository;
-    private final SoftSkillMapper mapper;
+    private final SoftSkillsRepository repository;
+    private final SoftSkillsMapper mapper;
 
     /**
      * Retrieves a list of all soft skills.
@@ -35,8 +35,8 @@ public class SoftSkillServiceImpl implements SoftSkillService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<SoftSkillDto> softSkillList() {
-        List<SoftSkillEntity> softSkillList = repository.findAll();
+    public List<SoftSkillsDto> softSkillList() {
+        List<SoftSkillsEntity> softSkillList = repository.findAll();
         return softSkillList.stream().map(mapper::toDto).toList();
     }
 
@@ -48,9 +48,10 @@ public class SoftSkillServiceImpl implements SoftSkillService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Optional<SoftSkillDto> findById(Integer id) {
+    public Optional<SoftSkillsDto> findById(Integer id) {
         return repository.findById(id).map(mapper::toDto);
     }
+
 
     /**
      * Saves a new soft skill.
@@ -60,8 +61,8 @@ public class SoftSkillServiceImpl implements SoftSkillService {
      */
     @Override
     @Transactional
-    public SoftSkillDto save(SoftSkillDto softSkill) {
-        SoftSkillEntity softSkillSaved=mapper.toEntity(softSkill);
+    public SoftSkillsDto save(SoftSkillsDto softSkill) {
+        SoftSkillsEntity softSkillSaved=mapper.toEntity(softSkill);
         repository.save(softSkillSaved);
         return mapper.toDto(softSkillSaved);
     }
@@ -76,11 +77,11 @@ public class SoftSkillServiceImpl implements SoftSkillService {
      */
     @Override
     @Transactional
-    public SoftSkillDto update(Integer id, SoftSkillDto softSkill) {
-        Optional<SoftSkillEntity> softSkillOptional=Optional.ofNullable(repository.findById(id).orElseThrow(()->new EntityNotFoundException("Soft skill not found")));
+    public SoftSkillsDto update(Integer id, SoftSkillsDto softSkill) {
+        Optional<SoftSkillsEntity> softSkillOptional=Optional.ofNullable(repository.findById(id).orElseThrow(()->new EntityNotFoundException("Soft skill not found")));
         if (softSkillOptional.isPresent()){
-            SoftSkillEntity softSkillEntity=softSkillOptional.get();
-            softSkillEntity.setName(softSkill.getName());
+            SoftSkillsEntity softSkillEntity=softSkillOptional.get();
+            softSkillEntity.setSs(mapper.toEntity(softSkill).getSs());
             repository.save(softSkillEntity);
             return mapper.toDto(softSkillEntity);
         }
@@ -96,7 +97,5 @@ public class SoftSkillServiceImpl implements SoftSkillService {
     @Transactional
     public void deleteById(Integer id) {
         repository.deleteById(id);
-
-
     }
 }

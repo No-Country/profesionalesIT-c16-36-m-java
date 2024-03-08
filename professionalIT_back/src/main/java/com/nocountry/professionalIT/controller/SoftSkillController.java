@@ -3,6 +3,9 @@ package com.nocountry.professionalIT.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.professionalIT.dto.SSDto;
+import com.nocountry.professionalIT.dto.SoftSkillsDto;
+import com.nocountry.professionalIT.service.impl.SsServiceImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.professionalIT.dto.SoftSkillDto;
-import com.nocountry.professionalIT.service.impl.SoftSkillServiceImpl;
+import com.nocountry.professionalIT.service.impl.SoftSkillsServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,26 +24,27 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SoftSkillController {
 
-	private final SoftSkillServiceImpl softSkillService;
+	private final SoftSkillsServiceImpl softSkillService;
+    private final SsServiceImpl SsServiceImpl;
     
 
     @PostMapping("/add")
-    public void create(@RequestBody SoftSkillDto m) {
+    public void create(@RequestBody SoftSkillsDto m) {
     	softSkillService.save(m);
     }
 
     @PutMapping("/edit") //?
-    public void edit(@PathVariable Integer id, @RequestBody SoftSkillDto m) {
+    public void edit(@PathVariable Integer id, @RequestBody SoftSkillsDto m) {
     	softSkillService.update(id,m);
     }
 
     @GetMapping("/get-all")
-    public List<SoftSkillDto> getAll() {
-        return softSkillService.softSkillList();
+    public List<SSDto> getAll() {
+        return SsServiceImpl.skillList();
     }
 
     @GetMapping("/get/{id}")
-    public Optional<SoftSkillDto> get(@PathVariable Integer id) {
+    public Optional<SoftSkillsDto> get(@PathVariable Integer id) {
         return softSkillService.findById(id);
     }
 

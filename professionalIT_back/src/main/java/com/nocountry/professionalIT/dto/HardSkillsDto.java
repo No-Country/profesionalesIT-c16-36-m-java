@@ -1,6 +1,8 @@
 package com.nocountry.professionalIT.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 /**
@@ -13,15 +15,17 @@ import lombok.Data;
  */
 
 @Data
-public class HardSkillDto {
+public class HardSkillsDto {
 
     /**
      * Unique identifier for the hard skill.
      */
     private Integer id;
+    @ManyToOne
+    @JsonIgnore
+    private HSDto hs;
 
-    /**
-     * Name of the hard skill.
-     */
-    private String name;
+    @ManyToOne
+    @JsonIgnore
+    private ProfessionalEntityDto professional;
 }
