@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = "https://jobsearch-350323.ue.r.appspot.com/"
+const url = "http://localhost:8081/api/"
 
 const instance = axios.create({
     baseURL:url
