@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = "http://localhost:8081/api/"
+const url = "http://localhost:8081"
 
 const instance = axios.create({
     baseURL:url
@@ -13,6 +13,10 @@ const post = (url,data)=>{
 const get = (url)=>{
     return instance.get(url)
 }
+
+const getWithParams = (url, params) => {
+    return instance.get(url, { params });
+};
 
 const getWithToken = async (url)=>{
     const token = await localStorage.getItem('token')
@@ -69,4 +73,4 @@ const deleteWithToken = async (url)=>{
 
 export default instance
 
-export {post,postWithToken,get,getWithToken,putWithToken,deleteWithToken}
+export {post,postWithToken,get,getWithToken,putWithToken,deleteWithToken,getWithParams}

@@ -21,7 +21,7 @@ export default function Root() {
           <Route path='signup' element={<SignUp />} />
           <Route path='dashboard' element={<Dashbaord />} />
           <Route path='search' element={<Search />} />
-          <Route path='profile/admin' element={<Profile />} />
+          <Route path='profile/admin/:id' element={<Profile />} />
           <Route path='profile/info' element={<Info/>} />
           <Route path='professionals/catalog' element={<Catalog/>} />
           <Route path='profile/contact' element={<ProfileContact/>} />

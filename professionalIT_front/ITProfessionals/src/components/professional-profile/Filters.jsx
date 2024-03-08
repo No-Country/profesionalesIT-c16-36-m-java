@@ -2,7 +2,13 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 
-export default function Filters() {
+export default function Filters({ onFilterChange }) {
+
+  const handleFilterChange = (filtro, valor) => {
+    console.log("Filtro:", filtro, "Valor:", valor);
+    onFilterChange(filtro, valor);
+  };
+
   return (
     <section className="px-4 md:px-6 py-6 md:py-12">
       <div className="container grid gap-6">
@@ -29,11 +35,11 @@ export default function Filters() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mt-1 w-[calc(100%+1px)]">
-                  <DropdownMenuCheckboxItem>Designer</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Developer</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Manager</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Marketer</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Writer</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={() => handleFilterChange('profession', 'Designer')}>Designer</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={() => handleFilterChange('profession', 'Developer')}>Developer</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={() => handleFilterChange('profession', 'Manager')}>Manager</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={() => handleFilterChange('profession', 'Marketer')}>Marketer</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={() => handleFilterChange('profession', 'Writer')}>Writer</DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -50,7 +56,7 @@ export default function Filters() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mt-1 w-[calc(100%+1px)]">
-                  <DropdownMenuCheckboxItem>Entry-Level</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem onClick={()=>handleFilterChange("seniorities","SENIOR")}>Entry-Level</DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem>Mid-Level</DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem>Senior/Experienced</DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem>Manager</DropdownMenuCheckboxItem>
