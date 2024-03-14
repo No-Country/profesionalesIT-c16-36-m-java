@@ -1,7 +1,6 @@
 package com.nocountry.professionalIT.controller;
 
 import com.nocountry.professionalIT.dto.ProfessionalProfile;
-import com.nocountry.professionalIT.mapper.ProfessionalProfileMapper;
 import com.nocountry.professionalIT.service.impl.FilterServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ import java.util.List;
 public class FilterController {
 
         private final FilterServiceImpl filterService;
-        private final ProfessionalProfileMapper mapper;
 
         @GetMapping("/filter")
         public ResponseEntity<List<ProfessionalProfile>> getFilteredProfessionals(
