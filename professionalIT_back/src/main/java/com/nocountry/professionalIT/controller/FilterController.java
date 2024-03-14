@@ -1,9 +1,6 @@
 package com.nocountry.professionalIT.controller;
 
-import com.nocountry.professionalIT.dto.ProfessionalEntityDto;
 import com.nocountry.professionalIT.dto.ProfessionalProfile;
-import com.nocountry.professionalIT.entities.*;
-import com.nocountry.professionalIT.mapper.ProfessionalMapper;
 import com.nocountry.professionalIT.mapper.ProfessionalProfileMapper;
 import com.nocountry.professionalIT.service.impl.FilterServiceImpl;
 import lombok.RequiredArgsConstructor;
