@@ -111,6 +111,13 @@ public class ProfessionalEntity {
     private List<WorkExperienceEntity> workExperiences;
 
     /**
+     * The list of educations of the professional.
+     */
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "professionalEntity", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private List<EducationEntity> educations;
+
+    /**
      * The list of languages known by the professional.
      */
     @OneToMany(mappedBy = "professional", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
