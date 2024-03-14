@@ -1,8 +1,8 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.ProfessionalEntityDto;
+import com.nocountry.professionalIT.dto.ProfessionalProfile;
 import com.nocountry.professionalIT.entities.ProfessionalEntity;
-import com.nocountry.professionalIT.mapper.ProfessionalMapper;
+import com.nocountry.professionalIT.mapper.ProfessionalProfileMapper;
 import com.nocountry.professionalIT.repository.ProfessionalRepository;
 import com.nocountry.professionalIT.service.FilterService;
 import com.nocountry.professionalIT.specification.ProfessionalSpecification;
@@ -16,8 +16,9 @@ import java.util.List;
 public class FilterServiceImpl implements FilterService {
 
     private final  ProfessionalRepository repository;
+    private final ProfessionalProfileMapper mapper;
 
-    public List<ProfessionalEntity> getProfessionalsWithFilters(
+    public List<ProfessionalProfile> getProfessionalsWithFilters(
 
             List<Integer> hardSkillIds,
             List<Integer> softSkillIds,
@@ -33,7 +34,7 @@ public class FilterServiceImpl implements FilterService {
 
         Specification<ProfessionalEntity> specification = ProfessionalSpecification.buildDynamicFilters(
                 hardSkillIds,softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
-
-        return repository.findAll(specification).stream().toList();
+        List<ProfessionalEntity> filteredProfessionals = repository.findAll(specification);
+        return filteredProfessionals.stream().map(mapper::toDto).toList();
     }
 }
