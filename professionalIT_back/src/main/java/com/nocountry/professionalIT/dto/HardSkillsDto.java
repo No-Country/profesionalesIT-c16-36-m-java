@@ -21,10 +21,17 @@ public class HardSkillsDto {
      * Unique identifier for the hard skill.
      */
     private Integer id;
+
+    /**
+     * The hard skill associated with the hard skill set.
+     */
     @ManyToOne
     @JsonIgnore
     private HSDto hs;
 
+    /**
+     * The professional associated with the hard skill. (Excluded from JSON serialization)
+     */
     @ManyToOne
     @JsonIgnore
     private ProfessionalEntityDto professional;

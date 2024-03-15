@@ -35,6 +35,9 @@ public class FieldEntity {
     @Column(name = "field_name")
     private String name;
 
+    /**
+     * The list of professionals associated with this field.
+     */
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnore

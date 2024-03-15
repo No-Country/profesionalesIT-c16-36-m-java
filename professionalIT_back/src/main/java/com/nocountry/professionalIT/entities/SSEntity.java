@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Entity class representing a soft skill.
- * @author Claudia Ortiz
+ * @author
  * @version 1.0
  * @since 2024-02-26
  */
@@ -34,6 +34,9 @@ public class SSEntity {
     @Column(name = "ss_name")
     private String name;
 
+    /**
+     * The list of soft skills associated with this ss.
+     */
     @OneToMany(mappedBy = "ss", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<SoftSkillsEntity> softSkills;

@@ -13,16 +13,37 @@ import java.util.Optional;
  * @since 2024-03-05
  */
 public interface SSService {
-
+    /**
+     * Retrieves a list of all skills.
+     * @return a list of all skills.
+     */
     List<SSDto> skillList();
 
-
+    /**
+     * Retrieves a skill by its identifier.
+     * @param id the identifier of the skill to retrieve.
+     * @return the skill with the given identifier, or an empty optional if no skill was found.
+     */
     Optional<SSDto> findById(Integer id);
 
+    /**
+     * Saves a new skill.
+     * @param skill the skill to save.
+     * @return the saved skill.
+     */
     SSDto save(SSDto skill);
 
+    /**
+     * Updates an existing skill.
+     * @param id the identifier of the skill to update.
+     * @param skill the updated skill.
+     * @return the updated skill.
+     */
     SSDto update(Integer id, SSDto skill);
 
-
+    /**
+     * Deletes a skill by its identifier.
+     * @param id the identifier of the skill to delete.
+     */
     void deleteById (Integer id);
 }

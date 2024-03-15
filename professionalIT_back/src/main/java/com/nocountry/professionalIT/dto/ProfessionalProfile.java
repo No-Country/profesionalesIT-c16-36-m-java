@@ -16,6 +16,13 @@ import java.util.UUID;
 
 /**
  * DTO for {@link ProfessionalEntity}
+ * This class represents a Data Transfer Object (DTO) for professional entities.
+ * This class is designed to transfer data related to a professional between different layers of an application.
+ * This class is also designed to be serialized and deserialized using JSON format.
+ * This class is also designed to be used as a request and response body for RESTful web services.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Data
 @AllArgsConstructor

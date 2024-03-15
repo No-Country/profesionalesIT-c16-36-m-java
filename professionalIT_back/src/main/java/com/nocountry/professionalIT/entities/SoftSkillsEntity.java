@@ -33,6 +33,9 @@ public class SoftSkillsEntity {
     @JoinColumn(name = "soft_ssid")
     private SSEntity ss;
 
+    /**
+     * Professional associated with the skill set.
+     */
     @ManyToOne
     @JoinColumn(name = "soft_profeid")
     private ProfessionalEntity professional;

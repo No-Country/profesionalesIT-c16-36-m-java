@@ -5,6 +5,9 @@ import lombok.Getter;
 /**
  * Enumeration representing the proficiency levels of a language.
  * Possible levels are: A1, A2, B1, B2, C1, C2.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-24
  */
 @Getter
 public enum LanguageLevel {
