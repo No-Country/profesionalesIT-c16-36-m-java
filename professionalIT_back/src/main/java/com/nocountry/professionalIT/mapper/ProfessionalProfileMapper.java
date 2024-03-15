@@ -78,12 +78,14 @@ public interface ProfessionalProfileMapper {
         professionalEntity.getKnowLanguage().forEach(knowLanguage -> knowLanguage.setProfessional(professionalEntity));
     }
 
+
     /**
      * Converts a ProfessionalEntity object to a ProfessionalProfile object.
      *
      * @param professionalEntity The ProfessionalEntity object to be converted.
      * @return The corresponding ProfessionalProfile object.
      */
+
     ProfessionalProfile toDto(ProfessionalEntity professionalEntity);
 
     /**

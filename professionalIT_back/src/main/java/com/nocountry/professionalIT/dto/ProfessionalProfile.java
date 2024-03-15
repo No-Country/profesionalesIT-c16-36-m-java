@@ -44,6 +44,7 @@ public class ProfessionalProfile implements Serializable {
     private List<KnowLanguageEntityDto> knowLanguage;
     private LocalDateTime updatedDate;
     private LocalDateTime createdDate;
+    private PersonEntityDto person;
 
     /**
      * DTO for {@link WorkModeEntity}
@@ -221,6 +222,58 @@ public class ProfessionalProfile implements Serializable {
         @NoArgsConstructor
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class LanguageEntityDto implements Serializable {
+            private Integer id;
+            private String name;
+        }
+    }
+    /**
+     * DTO for {@link PersonEntity}
+     */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class PersonEntityDto implements Serializable {
+        private String id;
+        private String name;
+        private String lastName;
+        private String img;
+        private String gender;
+        private CountryEntityDto country;
+        private ProvinceEntityDto province;
+        private LocalityEntityDto locality;
+
+
+        /**
+         * DTO for {@link CountryEntity}
+         */
+        @Data
+        @AllArgsConstructor
+        @NoArgsConstructor
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class CountryEntityDto implements Serializable {
+            private Integer id;
+            private String name;
+        }
+        /**
+         * DTO for {@link ProvinceEntity}
+         */
+        @Data
+        @AllArgsConstructor
+        @NoArgsConstructor
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class ProvinceEntityDto implements Serializable {
+            private Integer id;
+            private String name;
+        }
+        /**
+         * DTO for {@link LocalityEntity}
+         */
+        @Data
+        @AllArgsConstructor
+        @NoArgsConstructor
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class LocalityEntityDto implements Serializable {
             private Integer id;
             private String name;
         }
