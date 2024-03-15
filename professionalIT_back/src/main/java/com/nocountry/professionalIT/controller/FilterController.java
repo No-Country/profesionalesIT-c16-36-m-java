@@ -1,8 +1,6 @@
 package com.nocountry.professionalIT.controller;
 
-import com.nocountry.professionalIT.dto.ProfessionalEntityDto;
-import com.nocountry.professionalIT.entities.*;
-import com.nocountry.professionalIT.mapper.ProfessionalMapper;
+import com.nocountry.professionalIT.dto.ProfessionalProfile;
 import com.nocountry.professionalIT.service.impl.FilterServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+/**
+ * Controller for the filter of professionals.
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("professionals")
 public class FilterController {
 
         private final FilterServiceImpl filterService;
-        private final ProfessionalMapper mapper;
+
         @GetMapping("/filter")
-        public ResponseEntity<List<ProfessionalEntity>> getFilteredProfessionals(
+        public ResponseEntity<List<ProfessionalProfile>> getFilteredProfessionals(
                 @RequestParam(required = false) List<Integer> hardSkillIds,
                 @RequestParam(required = false) List<Integer> softSkillIds,
                 @RequestParam(required = false) List<Integer> workModeIds,
@@ -34,8 +34,8 @@ public class FilterController {
                 @RequestParam(required = false) Integer provinceId,
                 @RequestParam(required = false) Integer localityId) {
 
-            List<ProfessionalEntity> filteredProfessionals = filterService.getProfessionalsWithFilters(
-                    hardSkillIds,softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
+            List<ProfessionalProfile> filteredProfessionals = filterService.getProfessionalsWithFilters(
+                    hardSkillIds, softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
             if(filteredProfessionals != null && !filteredProfessionals.isEmpty()) {
                 return ResponseEntity.ok(filteredProfessionals);
             }
