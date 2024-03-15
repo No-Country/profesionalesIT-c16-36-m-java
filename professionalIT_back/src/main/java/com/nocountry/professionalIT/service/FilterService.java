@@ -4,6 +4,14 @@ package com.nocountry.professionalIT.service;
 import com.nocountry.professionalIT.dto.ProfessionalProfile;
 import java.util.List;
 
+/**
+ * Service interface for managing filters.
+ * This interface defines methods for retrieving professionals with filters.
+ *
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-03-05
+ */
 public interface FilterService {
     List<ProfessionalProfile> getProfessionalsWithFilters(
             List<Integer> hardSkillIds,

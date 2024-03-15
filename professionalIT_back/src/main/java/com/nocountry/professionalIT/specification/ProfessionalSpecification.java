@@ -10,7 +10,31 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to build dynamic filters for the professionals.
+ * It uses the Specification interface from Spring Data JPA to build the filters.
+ * The filters are built using the criteriaBuilder and the root of the entity.
+ * @author: Claudia Ortiz
+ * @version: 1.0
+ * @since: 2024-03-01
+ */
 public class ProfessionalSpecification {
+
+    /**
+     * This method is used to build the dynamic filters for the professionals.
+     * @param hardSkillIds the unique identifier of the hard skill.
+     * @param softSkillIds the unique identifier of the soft skill.
+     * @param workModeIds the unique identifier of the work mode.
+     * @param hasAvailInmediate the availability of the professional.
+     * @param hasAvailTravel the availability of the professional.
+     * @param fieldIds the unique identifier of the field.
+     * @param seniorities the seniority of the professional.
+     * @param knowLanguageList the unique identifier of the language.
+     * @param countryId the unique identifier of the country.
+     * @param provinceId the unique identifier of the province.
+     * @param localityId the unique identifier of the locality.
+     * @return Specification<ProfessionalEntity>
+     */
     public static Specification<ProfessionalEntity> buildDynamicFilters(
             List<Integer> hardSkillIds,
             List<Integer> softSkillIds,

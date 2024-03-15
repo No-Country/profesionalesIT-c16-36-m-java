@@ -49,6 +49,5 @@ public interface AvailabilityService {
      * @param id The unique identifier of the availability to be deleted.
      *
      */
-
     void deleteById (Integer id);
 }

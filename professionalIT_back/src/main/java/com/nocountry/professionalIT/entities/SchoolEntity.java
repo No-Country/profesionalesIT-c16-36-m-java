@@ -8,6 +8,9 @@ import lombok.Setter;
 
 /**
  * Entity class representing a school.
+ * @author Claudia Ortiz
+ * @version 1.0
+ * @since 2024-02-26
  */
 @Entity
 @NoArgsConstructor
