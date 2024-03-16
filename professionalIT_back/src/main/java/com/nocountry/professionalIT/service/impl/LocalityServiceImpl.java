@@ -1,6 +1,6 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.LocalityDTO;
+import com.nocountry.professionalIT.dto.countries.GetLocality;
 import com.nocountry.professionalIT.entities.LocalityEntity;
 import com.nocountry.professionalIT.mapper.LocalityMapper;
 import com.nocountry.professionalIT.repository.LocalityRepository;
@@ -17,7 +17,7 @@ import java.util.List;
  * @author Rodys Rodriguez
  * @email: rodisenrique73@gmail.com
  * @version 1.0
- * @since 2024-02-24
+ * @since 2024-03-16
  * */
 @RequiredArgsConstructor
 @Service
@@ -28,17 +28,6 @@ public class LocalityServiceImpl implements LocalityService {
     private final LocalityMapper localityMapper;
 
     /**
-     * Finds localities by province ID.
-     *
-     * @param id The ID of the province.
-     * @return A list of localities associated with the given province ID.
-     */
-    @Override
-    public List<LocalityEntity> findLocalitiesByProvinceId(Integer id) {
-        return localityRepository.findLocalitiesByProvinceId(id);
-    }
-
-    /**
      * Searches for localities by name and province ID.
      *
      * @param search   The search string to match against locality names.
@@ -46,7 +35,7 @@ public class LocalityServiceImpl implements LocalityService {
      * @return A list of localities matching the search string and province ID.
      */
     @Override
-    public List<LocalityDTO> searchLocalities(String search, Integer provinceId) {
+    public List<GetLocality> searchLocalities(String search, Integer provinceId) {
         List<LocalityEntity> localities;
         if (search == null || search.isEmpty()){
             localities = localityRepository.findLocalitiesByProvinceId(provinceId);

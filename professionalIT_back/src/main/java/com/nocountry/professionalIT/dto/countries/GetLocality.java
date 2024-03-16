@@ -1,4 +1,4 @@
-package com.nocountry.professionalIT.dto;
+package com.nocountry.professionalIT.dto.countries;
 
 import com.nocountry.professionalIT.entities.ProvinceEntity;
 import lombok.AllArgsConstructor;
@@ -6,34 +6,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
- * This class represents a Data Transfer Object (DTO) for Country entities.
+ * This class represents a Data Transfer Object (DTO) for locality entities.
  *
  * @author Rodys Rodriguez
  * @email: rodisenrique73@gmail.com
  * @version 1.0
- * @since 2024-02-24
+ * @since 2024-03-16
  * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CountryDTO {
+public class GetLocality {
 
     /**
-     * The unique identifier of the country
+     * The unique identifier of the locality
      */
     private Integer id;
 
     /**
-     * The name of the country.
+     * The name of the locality
      */
     private String name;
-
-    /**
-     * A list of provinces within this country
-     */
-    private List<ProvinceEntity> provinceList;
 }
