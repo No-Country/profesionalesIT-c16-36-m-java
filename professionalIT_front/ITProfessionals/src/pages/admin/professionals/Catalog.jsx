@@ -27,10 +27,9 @@ export default function Catalog() {
     }, [])
 
     const filteredProfessionals = () => {
-        // Construye la URL de la API
         const url = '/professionals/filter';
     
-        // Realiza la solicitud a la API usando los filtros como parámetros
+        // Request using filters as params
         getWithParams(url, filtros)
           .then(res => {
             setProfessionals(res.data);
@@ -40,7 +39,7 @@ export default function Catalog() {
           });
       };
     
-      // Función para manejar la búsqueda al hacer clic en el botón "Search"
+      
       const handleSearch = () => {
         filteredProfessionals();
       };

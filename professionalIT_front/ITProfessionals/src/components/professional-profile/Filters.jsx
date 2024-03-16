@@ -1,8 +1,84 @@
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
+import { get } from "../../api"
 
 export default function Filters({ onFilterChange }) {
+
+  //options for the dropdowns
+  const [profession, setProfession] = []
+  const [seniority, setSeniority] = ["TRAINEE", "JUNIOR", "SEMI_SENIOR", "SENIOR", "LEAD", "PRINCIPAL"]
+  const [country, setCountry] = []
+  const [city, setCity] = []
+  const [modality, setModality] = []
+  const [languages, setLanguages] = []
+  const [hardSkills, setHardSkills] = []
+  const [softSkills, setSoftSkills] = []
+  const [fields, setFields] = []
+
+
+  const fillOptions = () => {
+    //fetch options for the dropdowns
+    get('/mode/get-all')
+      .then(res => {
+        setModality(res.data)
+      })
+      .catch(error => {
+        console.error('Error al obtener modality:', error);
+      }
+      )
+    get('/knownlanguage/get-all')
+      .then(res => {
+        setLanguages(res.data)
+      }
+      )
+      .catch(error => {
+        console.error('Error al obtener languages:', error);
+      }
+      )
+    get('/softskill/get-all')
+      .then(res => {
+        setSoftSkills(res.data)
+      }
+      )
+      .catch(error => {
+        console.error('Error al obtener skills:', error);
+      }
+      )
+    get('/hardskill/get-all')
+      .then(res => {
+        setHardSkills(res.data)
+      }
+      )
+    get('/country')
+      .then(res => {
+        setCountry(res.data)
+      }
+      )
+      .catch(error => {
+        console.error('Error al obtener countries:', error);
+      }
+      )
+    get('/city/get-all')
+      .then(res => {
+        setCity(res.data)
+      }
+      )
+      .catch(error => {
+        console.error('Error al obtener cities:', error);
+      }
+      )
+    get('/field/get-all')
+      .then(res => {
+        setFields(res.data)
+      }
+      )
+      .catch(error => {
+        console.error('Error al obtener fields:', error);
+      }
+      )
+
+  }
 
   const handleFilterChange = (filtro, valor) => {
     console.log("Filtro:", filtro, "Valor:", valor);
