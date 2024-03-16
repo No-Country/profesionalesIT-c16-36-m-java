@@ -1,5 +1,7 @@
 package com.nocountry.professionalIT.dto;
 
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,14 +30,14 @@ public class RecruiterDTO {
     private UUID id;
 
     /**
-     * The {@link PersonDTO} object containing information about the recruiter's personal details.
+     * The {@link NewPerson} object containing information about the recruiter's personal details.
      */
     @Valid
-    private PersonDTO person;
+    private NewPerson person;
 
     /**
-     * The {@link UserDTO} object containing information about the recruiter's user account.
+     * The {@link NewUser} object containing information about the recruiter's user account.
      */
     @Valid
-    private UserDTO user;
+    private NewUser user;
 }

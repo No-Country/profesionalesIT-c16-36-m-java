@@ -1,11 +1,10 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.UserEntity;
 import com.nocountry.professionalIT.mapper.UserMapper;
 import com.nocountry.professionalIT.repository.UserRepository;
 import com.nocountry.professionalIT.service.UserService;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,23 +30,23 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDTO getCurrentUser(Authentication authentication) {
+    public NewUser getCurrentUser(Authentication authentication) {
         Optional<UserEntity> user = userRepository.findByEmail(authentication.getName());
-        UserDTO userDto = new UserDTO(user.get());
-        return userDto;
+        NewUser newUser = new NewUser(user.get());
+        return newUser;
     }
 
 
     @Override
-    public ResponseEntity<Object> createUser(UserDTO userDto) {
+    public ResponseEntity<Object> createUser(NewUser newUser) {
         //UserEntity user = new UserEntity();
-        Optional<UserEntity> user1 = userRepository.findByEmail(userDto.getEmail());
+        Optional<UserEntity> user1 = userRepository.findByEmail(newUser.getEmail());
 
         if (user1.isPresent()){
             return new ResponseEntity<>("The user already exists", HttpStatus.NOT_MODIFIED);
         }
 
-        UserEntity user = userMapper.toEntity(userDto);
+        UserEntity user = userMapper.toSaveEntity(newUser);
         userRepository.save(user);
 
 
@@ -59,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<?> updateUser(UserDTO userDto, Authentication authentication) {
+    public ResponseEntity<?> updateUser(NewUser newUser, Authentication authentication) {
         return null;
     }
 

@@ -1,5 +1,7 @@
 package com.nocountry.professionalIT.dto;
 
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +15,8 @@ import lombok.NoArgsConstructor;
 public class SaveProfessional {
 
     @Valid
-    private PersonDTO person;
+    private NewPerson person;
 
     @Valid
-    private UserDTO user;
+    private NewUser user;
 }

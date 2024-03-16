@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.service;
 
-import com.nocountry.professionalIT.dto.PersonDTO;
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.CustomerEntity;
 
 import java.util.List;
@@ -20,11 +20,11 @@ public interface CustomerService {
     /**
      * Saves a new customer based on the provided person and user data.
      *
-     * @param personDTO The DTO containing the person data for the new customer.
-     * @param userDTO The DTO containing the user data for the new customer.
+     * @param newPerson The DTO containing the person data for the new customer.
+     * @param newUser The DTO containing the user data for the new customer.
      * @return The newly created customer entity.
      */
-    CustomerEntity saveNewCustomer(PersonDTO personDTO, UserDTO userDTO);
+    CustomerEntity saveNewCustomer(NewPerson newPerson, NewUser newUser);
 
     /**
      * Finds a customer by its ID.

@@ -1,11 +1,10 @@
 package com.nocountry.professionalIT.service;
 
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.UserEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +12,9 @@ import java.util.UUID;
 
 public interface UserService extends UserDetailsService {
 
-    UserDTO getCurrentUser(Authentication authentication);
-    ResponseEntity<Object> createUser(UserDTO userDto);
-    ResponseEntity<?> updateUser (UserDTO userDto, Authentication authentication);
+    NewUser getCurrentUser(Authentication authentication);
+    ResponseEntity<Object> createUser(NewUser newUser);
+    ResponseEntity<?> updateUser (NewUser newUser, Authentication authentication);
 
 
     UserEntity saveUser(UserEntity user);

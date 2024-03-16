@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.PersonDTO;
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.repository.CustomerRepository;
@@ -31,23 +31,23 @@ public class CustomerServiceImpl implements CustomerService {
     /**
      * Saves a new customer based on the provided person and user data.
      *
-     * @param personDTO The DTO containing the person data for the new customer.
-     * @param userDTO The DTO containing the user data for the new customer.
+     * @param newPerson The DTO containing the person data for the new customer.
+     * @param newUser The DTO containing the user data for the new customer.
      * @return The newly created customer entity.
      */
     @Override
-    public CustomerEntity saveNewCustomer(PersonDTO personDTO, UserDTO userDTO) {
+    public CustomerEntity saveNewCustomer(NewPerson newPerson, NewUser newUser) {
 
         UserEntity user = UserEntity.builder()
-                .email(userDTO.getEmail())
+                .email(newUser.getEmail())
                 .role(Role.CUSTOMER)
                 .build();
 
         PersonEntity person = PersonEntity.builder()
                 .user(user)
-                .name(personDTO.getName())
-                .lastName(personDTO.getLastName())
-                .img(personDTO.getImg())
+                .name(newPerson.getName())
+                .lastName(newPerson.getLastName())
+                .img(newPerson.getImg())
                 .build();
 
         CustomerEntity customer = CustomerEntity.builder()
