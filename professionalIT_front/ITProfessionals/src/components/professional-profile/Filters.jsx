@@ -2,84 +2,42 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { get } from "../../api"
+import React, { useEffect, useState } from 'react'
 
 export default function Filters({ onFilterChange }) {
 
-  //options for the dropdowns
-  const [profession, setProfession] = []
-  const [seniority, setSeniority] = ["TRAINEE", "JUNIOR", "SEMI_SENIOR", "SENIOR", "LEAD", "PRINCIPAL"]
-  const [country, setCountry] = []
-  const [city, setCity] = []
-  const [modality, setModality] = []
-  const [languages, setLanguages] = []
-  const [hardSkills, setHardSkills] = []
-  const [softSkills, setSoftSkills] = []
-  const [fields, setFields] = []
+  const [filterOptions, setFilterOptions] = useState({
+    seniority: ["TRAINEE", "JUNIOR", "SEMI_SENIOR", "SENIOR", "LEAD", "PRINCIPAL"]
+  });
 
+  useEffect(() => {
+    fillOptions();
+    console.log(filterOptions);
+  }, []);
 
   const fillOptions = () => {
-    //fetch options for the dropdowns
-    get('/mode/get-all')
-      .then(res => {
-        setModality(res.data)
-      })
-      .catch(error => {
-        console.error('Error al obtener modality:', error);
-      }
-      )
-    get('/knownlanguage/get-all')
-      .then(res => {
-        setLanguages(res.data)
-      }
-      )
-      .catch(error => {
-        console.error('Error al obtener languages:', error);
-      }
-      )
-    get('/softskill/get-all')
-      .then(res => {
-        setSoftSkills(res.data)
-      }
-      )
-      .catch(error => {
-        console.error('Error al obtener skills:', error);
-      }
-      )
-    get('/hardskill/get-all')
-      .then(res => {
-        setHardSkills(res.data)
-      }
-      )
-    get('/country')
-      .then(res => {
-        setCountry(res.data)
-      }
-      )
-      .catch(error => {
-        console.error('Error al obtener countries:', error);
-      }
-      )
-    get('/city/get-all')
-      .then(res => {
-        setCity(res.data)
-      }
-      )
-      .catch(error => {
-        console.error('Error al obtener cities:', error);
-      }
-      )
-    get('/field/get-all')
-      .then(res => {
-        setFields(res.data)
-      }
-      )
-      .catch(error => {
-        console.error('Error al obtener fields:', error);
-      }
-      )
-
+    // Fetch options for the dropdowns
+    fetchData('/mode/get-all', "modality");
+    fetchData('/softskill/get-all', 'softSkills');
+    fetchData('/hardskill/get-all','hardSkills');
+    fetchData('/country','country');
+    fetchData('/field/get-all','fields');
   }
 
+  const fetchData = (url, setter) => {
+    get(url)
+      .then(res => {
+        setFilterOptions(prevOptions => ({
+          ...prevOptions,
+          [setter]: res.data.map(item => item.name)
+        }));
+      })
+      .catch(error => {
+        console.error(`Error getting options for url ${url}:`, error);
+      });
+  };
+
+  // Fill selected options
   const handleFilterChange = (filtro, valor) => {
     console.log("Filtro:", filtro, "Valor:", valor);
     onFilterChange(filtro, valor);
@@ -98,6 +56,31 @@ export default function Filters({ onFilterChange }) {
         </div>
         <div className="grid gap-4 md:gap-8">
           <div className="grid gap-4 md:gap-8">
+            {
+              // Select options for the dropdowns
+              Object.entries(filterOptions).map((
+                [filter, options], index) => (
+                <div key={index} className="grid gap-2">
+                  <Label className="text-sm" htmlFor={filter}>
+                    {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                  </Label>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button className="w-full justify-between text-left" id={filter} variant="outline">
+                        <span className="sr-only">Open</span>
+                        Select {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        <ChevronDownIcon className="h-4 w-4 ml-2 shrink-0" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="mt-1 w-[calc(100%+1px)]">
+                      {options?.map((option, index) => (
+                        <DropdownMenuCheckboxItem key={index} onClick={() => handleFilterChange(filter, option)}>{option}</DropdownMenuCheckboxItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              ))
+            }
             <div className="grid gap-2">
               <Label className="text-sm" htmlFor="profession">
                 Profession
