@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.PersonDTO;
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Role;
 import com.nocountry.professionalIT.repository.RecruiterRepository;
@@ -31,23 +31,23 @@ public class RecruiterServiceImpl implements RecruiterService {
     /**
      * Saves a new recruiter based on the provided person and user data.
      *
-     * @param personDTO The DTO containing the person data for the new recruiter.
-     * @param userDTO The DTO containing the user data for the new recruiter.
+     * @param newPerson The DTO containing the person data for the new recruiter.
+     * @param newUser The DTO containing the user data for the new recruiter.
      * @return The newly created recruiter entity.
      */
     @Override
-    public RecruiterEntity saveNewRecruiter(PersonDTO personDTO, UserDTO userDTO) {
+    public RecruiterEntity saveNewRecruiter(NewPerson newPerson, NewUser newUser) {
 
         UserEntity user = UserEntity.builder()
-                .email(userDTO.getEmail())
+                .email(newUser.getEmail())
                 .role(Role.RECRUITER)
                 .build();
 
         PersonEntity person = PersonEntity.builder()
                 .user(user)
-                .name(personDTO.getName())
-                .lastName(personDTO.getLastName())
-                .img(personDTO.getImg())
+                .name(newPerson.getName())
+                .lastName(newPerson.getLastName())
+                .img(newPerson.getImg())
                 .build();
 
         RecruiterEntity recruiter = RecruiterEntity.builder()

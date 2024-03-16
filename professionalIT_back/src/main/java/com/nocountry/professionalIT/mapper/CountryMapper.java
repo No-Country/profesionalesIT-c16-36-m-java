@@ -17,6 +17,8 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CountryMapper {
 
+    CountryEntity toEntity(GetCountry country);
+
     GetCountry toDto(CountryEntity countryEntity);
 
     List<GetCountry> toDtoList(List<CountryEntity> countryList);

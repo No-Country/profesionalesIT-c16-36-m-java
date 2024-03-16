@@ -1,4 +1,4 @@
-package com.nocountry.professionalIT.dto;
+package com.nocountry.professionalIT.dto.users;
 
 import com.nocountry.professionalIT.entities.UserEntity;
 import com.nocountry.professionalIT.enums.Role;
@@ -7,16 +7,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
+public class NewUser implements Serializable {
 
     private String email;
     private String role;
 
-    public UserDTO(UserEntity userEntity) {
+    public NewUser(UserEntity userEntity) {
         this.email = userEntity.getEmail();
         this.role = String.valueOf(userEntity.getRole());
     }
@@ -27,5 +30,9 @@ public class UserDTO {
                 .role(Role.valueOf(this.role))
                 .build();
     }
+
+    private String password;
+
+    private LocalDateTime createdDate;
 
 }

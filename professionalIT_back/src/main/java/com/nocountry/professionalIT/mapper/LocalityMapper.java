@@ -17,7 +17,9 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LocalityMapper {
 
-    GetLocality toDtoList(LocalityEntity localityEntity);
+    LocalityEntity toEntity(GetLocality locality);
+
+    GetLocality toDto(LocalityEntity localityEntity);
 
     List<GetLocality> toDtoList(List<LocalityEntity> localityEntity);
 }
