@@ -17,6 +17,8 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProvinceMapper {
 
+    ProvinceEntity toEntity(GetProvince province);
+
     GetProvince toDto(ProvinceEntity provinceEntity);
 
     List<GetProvince> toDtoList(List<ProvinceEntity> provinceList);
