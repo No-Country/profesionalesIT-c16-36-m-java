@@ -1,37 +1,28 @@
-package com.nocountry.professionalIT.dto;
+package com.nocountry.professionalIT.dto.users;
 
-import com.nocountry.professionalIT.entities.CountryEntity;
-import com.nocountry.professionalIT.entities.LocalityEntity;
-import com.nocountry.professionalIT.entities.ProvinceEntity;
-import com.nocountry.professionalIT.enums.Gender;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import java.io.Serializable;
 
 /**
- * This class represents a Data Transfer Object (DTO) for person entities.
+ * This class represents a DTO to save a new PersonEntity.
  *
  * @author Rodys Rodriguez
  * @email: rodisenrique73@gmail.com
  * @version 1.0
- * @since 2024-03-02
+ * @since 2024-03-16
  * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PersonDTO {
+public class NewPerson implements Serializable {
 
-    /**
-     * The unique identifier of the person.
-     */
-    private UUID id;
-
+    private NewUser user;
     /**
      * The person's first name, which cannot be empty.
      */
@@ -48,24 +39,4 @@ public class PersonDTO {
      * An optional image URL for the person.
      */
     private String img;
-
-    /**
-     * The person's gender, which must be specified.
-     */
-    private Gender gender;
-
-    /**
-     * The person's country of residence, which must be specified.
-     */
-    private CountryEntity country;
-
-    /**
-     * The person's province of residence, which must be specified.
-     */
-    private ProvinceEntity province;
-
-    /**
-     * The person's locality of residence, which must be specified.
-     */
-    private LocalityEntity locality;
 }
