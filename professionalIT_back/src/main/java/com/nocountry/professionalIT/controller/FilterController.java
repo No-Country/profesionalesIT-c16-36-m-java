@@ -22,20 +22,20 @@ public class FilterController {
 
         @GetMapping("/filter")
         public ResponseEntity<List<ProfessionalProfile>> getFilteredProfessionals(
-                @RequestParam(required = false) List<Integer> hardSkillIds,
-                @RequestParam(required = false) List<Integer> softSkillIds,
-                @RequestParam(required = false) List<Integer> workModeIds,
+                @RequestParam(required = false) List<Integer> hardSkills,
+                @RequestParam(required = false) List<Integer> softSkills,
+                @RequestParam(required = false) List<Integer> modality,
                 @RequestParam(required = false) Boolean hasAvailInmediate,
                 @RequestParam(required = false) Boolean hasAvailTravel,
-                @RequestParam(required = false) List<Integer> fieldIds,
-                @RequestParam(required = false) List<String> seniorities,
-                @RequestParam(required = false) List<Integer> knowLanguageList,
-                @RequestParam(required = false) Integer countryId,
-                @RequestParam(required = false) Integer provinceId,
-                @RequestParam(required = false) Integer localityId) {
+                @RequestParam(required = false) List<Integer> field,
+                @RequestParam(required = false) List<String> seniority,
+                @RequestParam(required = false) List<Integer> knowLanguage,
+                @RequestParam(required = false) Integer country,
+                @RequestParam(required = false) Integer province,
+                @RequestParam(required = false) Integer locality) {
 
             List<ProfessionalProfile> filteredProfessionals = filterService.getProfessionalsWithFilters(
-                    hardSkillIds, softSkillIds, workModeIds, hasAvailInmediate, hasAvailTravel, fieldIds, seniorities, knowLanguageList, countryId, provinceId, localityId);
+                    hardSkills, softSkills, modality, hasAvailInmediate, hasAvailTravel, field, seniority, knowLanguage, country, province, locality);
             if(filteredProfessionals != null && !filteredProfessionals.isEmpty()) {
                 return ResponseEntity.ok(filteredProfessionals);
             }
