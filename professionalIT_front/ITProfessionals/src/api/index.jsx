@@ -15,7 +15,9 @@ const get = (url)=>{
 }
 
 const getWithParams = (url, params) => {
-    return instance.get(url, { params });
+    const finalUrl = `${url}?${new URLSearchParams(params).toString()}`;
+    console.log("URL con parámetros:", finalUrl);
+    return instance.get(finalUrl);
 };
 
 const getWithToken = async (url)=>{

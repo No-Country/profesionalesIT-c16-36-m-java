@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProfessionalCard from '../../../components/professional-profile/ProfessionalCard'
 import Filters from '../../../components/professional-profile/Filters'
-import { get, getWithParams } from '../../../api/index.jsx'
+import { getWithParams } from '../../../api/index.jsx'
 
 export default function Catalog() {
 
@@ -15,9 +15,9 @@ export default function Catalog() {
             ...prevFiltros,
             [filtro]: valor
         }));
+        console.log(filtros)
     };
-    // Fetch professionals data when the
-    // component is mounted
+
     useEffect(() => {
         getWithParams('/professionals/filter', filtros)
             .then(res => {
@@ -35,7 +35,7 @@ export default function Catalog() {
             setProfessionals(res.data);
           })
           .catch(error => {
-            console.error('Error al obtener profesionales:', error);
+            console.error('Error obtaining professionals:', error);
           });
       };
     
