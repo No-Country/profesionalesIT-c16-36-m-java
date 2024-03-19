@@ -53,9 +53,9 @@ export default function Catalog() {
                 <button onClick={handleSearch}>Search</button>
             </div>
             <div className="w-3/4 p-4">
-                <div className='min-h-screen text-white flex flex-wrap justify-center gap-4'>
+                <div className=' min-h-12 text-white flex flex-wrap justify-start align-top gap-10 ml-12'>
                     {professionals.map(professional => (
-                        <ProfessionalCard key={professional.person.name} professional={professional}/>
+                        <ProfessionalCard key={professional.person.name} professional={professional} className="h-96" />
                     ))}
                 </div>
             </div>
