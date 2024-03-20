@@ -1,8 +1,8 @@
 package com.nocountry.professionalIT.controller;
 
-import com.nocountry.professionalIT.dto.CountryDTO;
-import com.nocountry.professionalIT.dto.LocalityDTO;
-import com.nocountry.professionalIT.dto.ProvinceDTO;
+import com.nocountry.professionalIT.dto.countries.GetCountry;
+import com.nocountry.professionalIT.dto.countries.GetLocality;
+import com.nocountry.professionalIT.dto.countries.GetProvince;
 import com.nocountry.professionalIT.service.CountryService;
 import com.nocountry.professionalIT.service.LocalityService;
 import com.nocountry.professionalIT.service.ProvinceService;
@@ -23,25 +23,20 @@ public class CountryController {
 
     private final LocalityService localityService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CountryDTO> findCountryById (@PathVariable Integer id){
-        return ResponseEntity.ok().body(countryService.findById(id));
-    }
-
     @GetMapping()
-    public ResponseEntity<List<CountryDTO>> findAllCountries (){
+    public ResponseEntity<List<GetCountry>> findAllCountries (){
         return ResponseEntity.ok().body(countryService.findAll());
     }
 
     @GetMapping("{id}/provinces")
-    public ResponseEntity<List<ProvinceDTO>> searchProvinces (@RequestParam(required = false) String search,
-                                              @PathVariable Integer id){
+    public ResponseEntity<List<GetProvince>> searchProvinces (@RequestParam(required = false) String search,
+                                                              @PathVariable Integer id){
         return ResponseEntity.ok().body(provinceService.searchProvinces(search, id));
     }
 
     @GetMapping("/province/{id}/localities")
-    public ResponseEntity<List<LocalityDTO>> searchLocalities (@PathVariable Integer id,
-                                               @RequestParam(required = false) String search){
+    public ResponseEntity<List<GetLocality>> searchLocalities (@PathVariable Integer id,
+                                                               @RequestParam(required = false) String search){
         return ResponseEntity.ok().body(localityService.searchLocalities(search,id));
     }
 }

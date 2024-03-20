@@ -1,18 +1,25 @@
 package com.nocountry.professionalIT.mapper;
 
-import com.nocountry.professionalIT.dto.LocalityDTO;
+import com.nocountry.professionalIT.dto.countries.GetLocality;
 import com.nocountry.professionalIT.entities.LocalityEntity;
 import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+/**
+ * Mapper interface for converting between LocalityDTOs and LocalityEntity.
+ *
+ * @author Rodys Rodriguez
+ * @email: rodisenrique73@gmail.com
+ * @version 1.0
+ * @since 2024-03-16
+ * */
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LocalityMapper {
 
-    LocalityDTO toDtoList(LocalityEntity localityEntity);
+    LocalityEntity toEntity(GetLocality locality);
 
-    List<LocalityDTO> toDtoList(List<LocalityEntity> localityEntity);
+    GetLocality toDto(LocalityEntity localityEntity);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    LocalityEntity partialUpdate(LocalityDTO localityDTO, @MappingTarget LocalityEntity localityEntity);
+    List<GetLocality> toDtoList(List<LocalityEntity> localityEntity);
 }

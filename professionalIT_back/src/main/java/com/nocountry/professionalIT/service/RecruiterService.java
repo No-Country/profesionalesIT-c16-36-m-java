@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.service;
 
-import com.nocountry.professionalIT.dto.PersonDTO;
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.RecruiterEntity;
 
 import java.util.List;
@@ -20,11 +20,11 @@ public interface RecruiterService {
     /**
      * Saves a new recruiter based on the provided person and user data.
      *
-     * @param personDTO The DTO containing the person data for the new recruiter.
-     * @param userDTO The DTO containing the user data for the new recruiter.
+     * @param newPerson The DTO containing the person data for the new recruiter.
+     * @param newUser The DTO containing the user data for the new recruiter.
      * @return The newly created recruiter entity.
      */
-    RecruiterEntity saveNewRecruiter(PersonDTO personDTO, UserDTO userDTO);
+    RecruiterEntity saveNewRecruiter(NewPerson newPerson, NewUser newUser);
 
     /**
      * Finds a recruiter by its ID.

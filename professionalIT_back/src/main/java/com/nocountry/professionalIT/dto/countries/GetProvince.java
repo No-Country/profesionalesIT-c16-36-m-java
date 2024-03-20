@@ -1,13 +1,10 @@
-package com.nocountry.professionalIT.dto;
+package com.nocountry.professionalIT.dto.countries;
 
 import com.nocountry.professionalIT.entities.CountryEntity;
-import com.nocountry.professionalIT.entities.LocalityEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * This class represents a Data Transfer Object (DTO) for province entities.
@@ -15,13 +12,13 @@ import java.util.List;
  * @author Rodys Rodriguez
  * @email: rodisenrique73@gmail.com
  * @version 1.0
- * @since 2024-02-24
+ * @since 2024-03-16
  * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProvinceDTO {
+public class GetProvince {
 
     /**
      * The unique identifier of the province.
@@ -32,9 +29,4 @@ public class ProvinceDTO {
      * The name of the province.
      */
     private String name;
-
-    /**
-     * The country to which this province belongs.
-     */
-    private CountryEntity country;
 }

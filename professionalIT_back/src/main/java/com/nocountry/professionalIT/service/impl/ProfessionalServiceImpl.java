@@ -1,7 +1,7 @@
 package com.nocountry.professionalIT.service.impl;
 
-import com.nocountry.professionalIT.dto.PersonDTO;
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.PersonEntity;
 import com.nocountry.professionalIT.entities.ProfessionalEntity;
 import com.nocountry.professionalIT.entities.UserEntity;
@@ -23,18 +23,18 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalRepository professionalRepository;
 
     @Override
-    public ProfessionalEntity saveNewProfessional(PersonDTO personDTO, UserDTO userDTO) {
+    public ProfessionalEntity saveNewProfessional(NewPerson newPerson, NewUser newUser) {
 
         UserEntity user = UserEntity.builder()
-                .email(userDTO.getEmail())
+                .email(newUser.getEmail())
                 .role(Role.PROFESSIONAL)
                 .build();
 
         PersonEntity person = PersonEntity.builder()
                 .user(user)
-                .name(personDTO.getName())
-                .lastName(personDTO.getLastName())
-                .img(personDTO.getImg())
+                .name(newPerson.getName())
+                .lastName(newPerson.getLastName())
+                .img(newPerson.getImg())
                 .build();
 
         ProfessionalEntity professional = ProfessionalEntity.builder()

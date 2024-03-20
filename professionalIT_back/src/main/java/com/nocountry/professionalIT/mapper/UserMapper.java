@@ -1,6 +1,7 @@
 package com.nocountry.professionalIT.mapper;
 
-import com.nocountry.professionalIT.dto.UserDTO;
+import com.nocountry.professionalIT.dto.users.GetUser;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
@@ -13,10 +14,10 @@ import org.mapstruct.ReportingPolicy;
  * @since 2024-03-7
  * */
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
 
-    UserDTO toDto(UserEntity userEntity);
+    GetUser toDto(UserEntity userEntity);
 
-    UserEntity toEntity(UserDTO userDTO);
+    UserEntity toSaveEntity(NewUser newUser);
 }

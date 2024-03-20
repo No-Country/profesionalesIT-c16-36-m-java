@@ -1,9 +1,10 @@
 package com.nocountry.professionalIT.dto;
 
+import com.nocountry.professionalIT.dto.users.NewPerson;
+import com.nocountry.professionalIT.dto.users.NewUser;
 import com.nocountry.professionalIT.entities.*;
 import com.nocountry.professionalIT.enums.Seniority;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -34,9 +35,9 @@ public class ProfessionalEntityDto implements Serializable {
     List<HardSkillsEntity> hardSkills;
 
     @Valid
-    PersonDTO person;
+    NewPerson person;
 
-    UserDTO user;
+    NewUser user;
 
     FieldEntity field;
 
