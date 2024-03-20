@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 /**
  * Controller for the filter of professionals.
@@ -40,7 +41,7 @@ public class FilterController {
                 return ResponseEntity.ok(filteredProfessionals);
             }
 
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(Collections.emptyList());
 
         }
 

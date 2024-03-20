@@ -82,7 +82,7 @@ public class ProfessionalSpecification {
             }
 
             if (workModeIds != null && !workModeIds.isEmpty()) {
-                Join<ProfessionalEntity, ?> workModeJoin = root.join("workMode");
+                Join<ProfessionalEntity, ?> workModeJoin = root.join("workModes");
                 Path<?> workModePath = workModeJoin.get("id");
                 predicates.add(workModePath.in(workModeIds));
             }
